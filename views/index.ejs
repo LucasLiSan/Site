@@ -1,0 +1,41 @@
+<!-- balão https://codepen.io/mblase75/pen/JYpwGJ 
+welcome https://codepen.io/thebabydino/pen/DmVqBM
+-->
+
+<%- include ('partials/header.ejs') %>
+<% if(messages.success) { %>
+    <div class="alertSuccess">
+        <%= messages.success %>
+    </div>
+<% } %>
+<main class="indexBody">
+    <section class="quickSearch">
+        <h1>BUSCA RÁPIDA</h1>
+        <div class="citySearch">
+            <a href="/cidades">
+                <img src="imgs/icons/iconCidade.webp" alt="Icone cidade">
+                <span>POR CIDADE</span>
+            </a>
+        </div>
+        <div class="localSearch">
+            <a href="/pontos">
+                <img src="imgs/icons/iconPonto.webp" alt="Icone ponto turistico">
+                <span>POR PONTO TURISTICO</span>
+            </a>
+        </div>
+        <div class="guideSearch">
+            <a href="/guias">
+                <img src="imgs/icons/iconGuia.webp" alt="Icone guia de turismo">
+                <span>POR GUIA TURISTICO</span>
+            </a>
+        </div>
+    </section>
+    <section class="recentReviews">
+        
+    </section>
+    <section class="aboutUs">
+
+    </section>
+</main>
+
+<%- include ('partials/footer.ejs') %>

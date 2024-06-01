@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+    <html lang="pt-br">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="/css/style.css">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel+Decorative:wght@400;700;900&family=Eagle+Lake&family=Prata&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+            <script src="/js/script.js"></script>
+            <title>Traveling Monkey</title>
+        </head>
+        <body>
+            <%- include ('partials/nav.ejs') %>
+            <section class="login-form">
+                <div class="containerLoginForm">
+                    <% if(messages.danger) { %>
+                        <div class="alertDanger">
+                            <%= messages.danger %>
+                        </div>
+                    <% } %>
+                    <div class="cardLoginForm">
+                        <div class="form-img">
+                            <img src="/imgs/monkey-5.jpg" alt="">
+                        </div>
+                        <h2>Login</h2>
+                        <form action="/auth" method="POST">
+                            <div class="userPatch">
+                                <input type="radio" name="user" value="Cidade" required>Cidade
+                                <input type="radio" name="user" value="Guia" required>Guia
+                                <input type="radio" name="user" value="Turista" required>Turista
+                            </div>
+                            <input type="email" id="email" name="email" placeholder="E-mail" required>
+                            <input type="password" id="password" name="password" placeholder="Senha" required>
+                            <button type="submit">Entrar</button>
+                        </form>
+                        <span>Ainda não é cadastrado? <a href="/cadastro">Cadastre-se</a></span>
+                    </div>
+                </div>
+            </section>
+
+        <%- include ('partials/footer.ejs') %>

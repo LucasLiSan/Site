@@ -1,0 +1,1601 @@
+:root {
+    --colorStandart: #2760E6;
+    --colorSecond: #6827E6;
+    --colorThird: #0C1E47;
+    --colorBtns: #E6AD27;
+    --colorBtnsHover: #E62774;
+    --colorBtnsActive: #27E631;
+    --colorBackGround: #495E91;
+    --fontTitles: "Bebas Neue", sans-serif;
+    --fontBodyText: "Comfortaa", sans-serif;
+}
+
+/* ESTILIZAÇÃO DA BARRA DE SCROLL */
+
+/* Customiza a barra de rolagem inteira */
+::-webkit-scrollbar {
+    width: 12px;  /* Largura da barra de rolagem vertical */
+    height: 12px; /* Altura da barra de rolagem horizontal */
+}
+
+/* Customiza o "polegar" da barra de rolagem, que é a parte que se move */
+::-webkit-scrollbar-thumb {
+    background-color: var(--colorBtns);  /* Cor do polegar */
+    border-radius: 1rem;      /* Bordas arredondadas */
+}
+
+/* Customiza a faixa de rolagem, que é a área em que o polegar se move */
+::-webkit-scrollbar-track {
+    background: var(--colorBackGround); /* Cor da faixa */
+}
+
+/* Customiza a faixa de rolagem quando está ativa (quando está sendo rolada) */
+::-webkit-scrollbar-track-piece {
+    background: var(--colorStandart);
+}
+
+/* Customiza os botões de incremento/decremento da barra de rolagem (não visível na maioria dos navegadores) */
+::-webkit-scrollbar-button {
+    background-color: var(--colorBtns);
+    border-radius: 1rem;
+}
+
+/* Customiza a barra de rolagem quando está em modo "hover" (quando o mouse está sobre ela) */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--colorBtnsHover); /* Cor do polegar em modo hover */
+}
+
+/* ESTILIZAÇÃO DA BARRA DE SCROLL */
+
+/*ESTILIZAÇÃO DE SUBMIT BUTTON COM DISABLED-ENABLED*/
+
+/* Estilo para o botão desativado */
+input[type="submit"].btnAtt.editable:disabled {
+    background-color: #d3d3d3; /* Cor de fundo para o estado desativado */
+    color: #888; /* Cor do texto para o estado desativado */
+    cursor: not-allowed; /* Cursor indicando que não está clicável */
+    border: 1px solid #ccc; /* Bordas mais claras */
+}
+
+/* Estilo para o botão ativado */
+input[type="submit"].btnAtt.editable:enabled {
+    background-color: var(--colorBtns); /* Cor de fundo para o estado ativado */
+    color: #000000; /* Cor do texto para o estado ativado */
+    cursor: pointer; /* Cursor indicando que é clicável */
+    transition: background-color 0.3s ease; /* Transição suave ao mudar de estado */
+}
+
+/* Estilo adicional ao passar o mouse sobre o botão ativado */
+input[type="submit"].btnAtt.editable:enabled:hover {
+    background-color: var(--colorBtnsHover); /* Cor de fundo ao passar o mouse */
+    color: #ffffff; /* Cor do texto ao passar o mouse */
+}
+/* Estilo adicional click do mouse sobre o botão ativado */
+input[type="submit"].btnAtt.editable:enabled:active {
+    background-color: var(--colorBtnsActive); /* Cor de fundo ao passar o mouse */
+}
+
+/*ESTILIZAÇÃO DE SUBMIT BUTTON COM DISABLED-ENABLED*/
+
+
+
+
+body {
+    background-color: var(--colorBackGround);
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    font-family: var(--fontBodyText);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+.alertDanger {
+    position: absolute;
+    width: 80%;
+    padding: 1rem;
+    margin-bottom: 0.6rem;
+    text-align: center;
+    color: var(--colorBtnsHover);
+    text-transform: uppercase;
+    font-size: 1rem;
+    font-weight: bold;
+    background: var(--colorThird);
+    border-radius: 1rem;
+}
+
+.alertSuccess {
+    position: absolute;
+    width: 50%;
+    padding: 0.4rem;
+    text-align: center;
+    color: var(--colorBtnsActive);
+    font-size: 1rem;
+    text-transform: uppercase;
+    background: var(--colorThird);
+    border-radius: 2rem;
+    font-weight: bold;
+}
+
+legend {
+    font-family: var(--fontTitles);
+    color: #ffffff;
+    font-size: 1.5rem;
+}
+
+.navTopMenu {
+    width: 95%;
+    height: 5rem;
+    display: grid;
+    grid-template:
+        "logo navbar" 100%
+        /30% 2fr
+    ;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: var(--colorSecond);
+    border-radius: 1rem;
+    z-index: 1;
+}
+
+.topMenu {
+    grid-area: navbar;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.topMenu li {
+    width: 20%;
+    height: 90%;
+    align-content: center;
+    text-align: center;
+    list-style: none;
+    color: #ffffff;
+    border-radius: 1rem;
+}
+
+.liHover:hover, .liHover a:hover,
+.searchDivHover:hover, .quickSearch a:hover {
+    background: var(--colorBtnsHover);
+    color: #000000;
+    border-radius: 1rem;
+}
+
+.liHover:active, .liHover a:active,
+.quickSearch a:active {
+    background: var(--colorBtnsActive);
+}
+
+.logo {
+    grid-area: logo;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.logo a {
+    height: 100%;
+    width: 25%;
+    align-content: center;
+    text-align: center;
+}
+
+.logo img {
+    height: 90%;
+    border-radius: 4rem;
+}
+
+.currencyLanguage {
+    height: 100%;
+    align-content: center;
+    text-align: center;
+    width: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+.language, .currency {
+    width: 50%;
+    height: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.currency { justify-content: center;}
+
+.language img, .currency img {
+    height: 40%;
+}
+
+.modalCurrency, .modalNewPonto {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-currency-content, .modal-newPonto-content {
+    position: relative;
+    background-color: var(--colorBackGround);
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    border-radius: 1rem;
+    width: 35%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+.close, .closeModalPonto {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus,
+.closeModalPonto:hover,
+.closeModalPonto:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-currency-header, .modal-newPonto-header {
+    padding: 2px 16px;
+    background-color: var(--colorSecond);
+    color: white;
+    border-radius: 1rem 1rem 0 0;
+}
+
+.modal-currency-body, .modal-newPonto-body {
+    padding: 2px 16px;
+    height: 10rem;
+    display: grid;
+    grid-template:
+        "lang" 35%
+        "coin" 35%
+        "btnSelect" 30%
+        /1fr
+    ;
+}
+
+.modal-newPonto-body {
+    display: flex;
+    height: 40rem;
+}
+
+.modal-currency-footer, .modal-newPonto-footer {
+    padding: 2px 16px;
+    background-color: var(--colorThird);
+    color: white;
+    border-radius: 0 0 1rem 1rem;
+}
+
+.lang, .coin {
+    align-items: center;
+    justify-items: center;
+}
+
+.lang label, .coin label,
+.coin select, .lang select {
+    width: 100%;
+    height: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.coin select, .lang select {
+    color: #000000;
+}
+
+.lang {
+    grid-area: lang;
+    display: grid;
+    grid-template:
+        "langLabel langSelect" 100%
+        /1fr 1fr
+    ;
+}
+
+.select {
+    grid-area: btnSelect;
+    display: grid;
+    grid-template:
+        ". . btn" 100%
+        /1fr 1fr 1fr
+    ;
+    align-items: center;
+    justify-items: center;
+}
+.btnSelect {
+    grid-area: btn;
+    width: 70%;
+    font-size: 1rem;
+    font-weight: bold;
+    height: 70%;
+    background: var(--colorBtns);
+    color: #000000;
+    border-radius: 1rem;
+}
+
+.lang label { grid-area: langLabel;}
+.lang select { grid-area: langSelect;}
+
+.coin {
+    grid-area: coin;
+    display: grid;
+    grid-template:
+        "coinLabel coinSelect" 100%
+        /1fr 1fr
+    ;
+}
+
+.coin label { grid-area: coinLabel;}
+.coin select { grid-area: coinSelect;}
+
+.loginBtn {
+    height: 100%;
+    align-content: center;
+    text-align: center;
+    width: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.buttonIn {
+    width: 70%;
+    height: 3rem;
+    background: var(--colorBtns);
+    color: #ffffff;
+    font-family: var(--fontBodyText);
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    align-items: center;
+}
+.buttonOut {
+    width: 70%;
+    height: 3rem;
+    background: var(--colorBtns);
+    color: #ffffff;
+    font-family: var(--fontBodyText);
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+    align-items: center;
+}
+
+.buttonOut a {
+    width: 100%;
+    height: 100%;
+    color: #000000;
+    text-decoration: none;
+    align-content: center;
+    border-radius: 1rem;
+}
+
+.loginBtn > a {
+    width: 30%;
+    height: 100%;
+    align-content: center;
+    text-decoration: none;
+    color: #000000;
+}
+
+.buttonIn a {
+    width: 100%;
+    height: 50%;
+    align-content: center;
+    color: #000000;
+    text-decoration: none;
+}
+
+.buttonIn a:nth-child(1) { border-radius: 1rem 1rem 0 0;}
+.buttonIn a:nth-child(2) { border-radius: 0 0 1rem 1rem;}
+
+
+.loginBtn button:hover, #searchFormSubmit input:hover,
+.btnSelect:hover, .loginBtn a:hover, .btnAtt:hover {
+    background: var(--colorBtnsHover);
+    color: #ffffff;
+}
+
+.loginBtn button:active, #searchFormSubmit input:active,
+.btnSelect:active, .loginBtn a:active, .btnAtt:active {
+    background: var(--colorBtnsActive);
+}
+
+.liHome {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.liHome a {
+    width: 100%;
+    height: 100%;
+    align-content: center;
+    text-align: center;
+    text-decoration: none;
+    color: #ffffff;
+    border-radius: 1rem;
+}
+
+.headerBody {
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+}
+
+.searchSection {
+    margin-top: 1rem;
+    width: 60%;
+    height: 10rem;
+    background: var(--colorStandart);
+    border-radius: 1rem;
+}
+
+.searchSectionTitles {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.searchSectionTitles h1 {
+    width: 100%;
+    align-content: center;
+    margin: 0;
+}
+
+.searchSectionTitles h2 {
+    font-style: italic;
+    width: 50%;
+    margin: 0;
+}
+
+.searchSectionOptions {
+    width: 100%;
+    height: 50%;
+}
+
+.searchForm {
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+}
+
+.searchForm div {
+    width: 25%;
+    height: 100%;
+}
+
+.searchForm input, .searchForm select {
+    border-radius: 1rem;
+    border: none;
+}
+
+.destiny {
+    display: grid;
+    grid-template:
+        "lupa destinyLabel destinyLabel" 40%
+        "lupa destinyInput destinyInput" 45%
+        / 20% 1fr 1fr
+    ;
+    justify-items: start;
+    align-content: center;
+    align-items: center;
+    border-right: dashed 1px;
+    margin-right: 5px;
+}
+
+.destiny img {
+    grid-area: lupa;
+    width: 90%;
+}
+
+.destiny label {
+    grid-area: destinyLabel;
+    width: 100%;
+    height: 100%;
+    text-align: start;
+    align-content: end;
+    font-weight: bold;
+}
+
+#destinyChoice {
+    grid-area: destinyInput;
+    height: 1.5rem;
+    width: 95%;
+}
+
+.dates {
+    display: grid;
+    grid-template:
+        "dateLabelIn dateLabelOut" 40%
+        "dateInputIn dateInputOut" 45%
+        / 1fr 1fr
+    ;
+    border-right: dashed 1px;
+    margin-right: 5px;
+    align-items: center;
+    align-content: center;
+    justify-items: start;
+}
+
+.dates label {
+    width: 100%;
+    height: 100%;
+    align-content: end;
+    text-align: start;
+    font-weight: bold;
+}
+
+.dates input {
+    width: 95%;
+    height: 1.5rem;
+}
+
+#dateLabelIn { grid-area: dateLabelIn;}
+
+#dateIn { grid-area: dateInputIn;}
+
+#dateLabelOut { grid-area: dateLabelOut;}
+
+#dateOut { grid-area: dateInputOut;}
+
+.people {
+    display: grid;
+    grid-template:
+        "peopleLabel" 40%
+        "peopleSelect" 45%
+        / 1fr
+    ;
+    margin-right: 5px;
+    align-items: center;
+    align-content: center;
+    justify-items: start;
+}
+
+#turists {
+    grid-area: peopleSelect;
+    width: 95%;
+    height: 1.5rem;
+}
+
+#peopleLabel {
+    grid-area: peopleLabel;
+    width: 95%;
+    height: 100%;
+    align-content: end;
+    text-align: start;
+    font-weight: bold;
+}
+
+#searchFormSubmit {
+    width: 10%;
+    height: 100%;
+    display: grid;
+    grid-template:
+        "." 40%
+        "searchFormSubmit" 45%
+        / 1fr
+    ;
+    align-content: center;
+    justify-items: center;
+    align-items: center;
+}
+
+#searchFormSubmit input {
+    grid-area: searchFormSubmit;
+    height: 95%;
+    width: 95%;
+    background: var(--colorBtns);
+    color: #000000;
+    font-weight: bold;
+    border-radius: 1rem;
+    border: solid 2px #000000;
+}
+
+.indexBody {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;
+}
+
+.indexBody section {
+    width: 80%;
+    height: 30%;
+    border-radius: 1rem;
+    background: var(--colorStandart);
+}
+
+.quickSearch {
+    display: grid;
+    grid-template:
+        ". titleQSearch ." 40%
+        "searchCity searchLocal searchGuide" 60%
+        / 20% 20% 20%
+    ;
+    justify-content: space-evenly;
+}
+
+.quickSearch h1 {
+    grid-area: titleQSearch;
+    font-family: var(--fontTitles);
+    font-size: 3.5rem;
+    color: #ffffff;
+    margin: 0;
+    text-align: center;
+    align-content: center;
+}
+
+.quickSearch a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bolder;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.quickSearch img { width: 40%;}
+
+.citySearch { grid-area: searchCity;}
+
+.citySearch a {
+    display: grid;
+    grid-template:
+        "imgCitySearch" 80%
+        "spanCitySearch" 20%
+        / 1fr
+    ;
+    align-items: center;
+    justify-items: center;
+}
+
+.citySearch img { grid-area: imgCitySearch;}
+.citySearch span { grid-area: spanCitySearch;}
+
+.localSearch { grid-area: searchLocal;}
+
+.localSearch a {
+    display: grid;
+    grid-template:
+        "imgLocalSearch" 80%
+        "spanLocalSearch" 20%
+        / 1fr
+    ;
+    align-items: center;
+    justify-items: center;
+}
+
+.localSearch img { grid-area: imgLocalSearch;}
+.localSearch span { grid-area: spanLocalSearch;}
+
+.guideSearch { grid-area: searchGuide;}
+
+.guideSearch a {
+    display: grid;
+    grid-template:
+        "imgGuideSearch" 80%
+        "spanGuideSearch" 20%
+        / 1fr
+    ;
+    align-items: center;
+    justify-items: center;
+}
+
+.guideSearch img { grid-area: imgGuideSearch;}
+.guideSearch span { grid-area: spanGuideSearch;}
+
+.cidadesBody {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    background: var(--colorStandart);
+    border-radius: 1rem;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.cidadesBody h1 {
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    font-family: var(--fontTitles);
+    font-size: 4rem;
+    margin: 0 0 1rem 0;
+}
+
+.cidadesTable {
+    width: 90%;
+    text-align: center;
+}
+
+.cidadesTable tr { height: 2.5rem;}
+
+footer {
+    width: 100%;
+    background: var(--colorThird);
+    height: 7rem;
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: bold;
+    text-align: center;
+    align-content: center;
+    z-index: 0;
+}
+
+.demo_3 {
+    width: 80%;
+    padding: 0em 4em 4em;
+    text-align: center;
+}
+
+.related p { font-size: 1.5em;}
+
+.related > a {
+    background: rgba(0,0,0,0.05);
+    display: inline-block;
+    text-align: center;
+    margin: 20px 10px;
+    padding: 25px;
+    -webkit-transition: color 0.3s, background-color 0.3s;
+	-ms-transition: color 0.3s, background-color 0.3s;
+	transition: color 0.3s, background-color 0.3s;
+}
+
+.related a:hover { background-color: rgba(0, 0, 0, 0.4);}
+
+.related a img {
+    max-width: 100%;
+    opacity: 0.8;
+    -webkit-transition: opacity 0.3s;
+    -ms-transition: opacity 0.3s;
+	transition: opacity 0.3s;
+}
+
+.related a:hover img,
+.related a:active img {
+    opacity: 1;
+}
+
+.related a h3 {
+    margin: 0;
+    padding: 0.5em 0 0.3em;
+    max-width: 300px;
+    text-align: left;
+}
+
+.demo_3 h1 {
+    color: #ffffff;
+    font-size: 3rem;
+    font-family: (--fontTitles);
+    font-weight: bolder;
+}
+
+.box {
+    width: 300px;
+    height: 460px;
+    position: relative;
+    background: rgba(255,255,255,1);
+    display: inline-block;
+    margin: 0 10px;
+    cursor: pointer;
+    color: #2c3e50;
+    box-shadow: inset 0 0 0 3px var(--colorThird);
+	-webkit-transition: background 0.4s 0.5s;
+	-ms-transition: background 0.4s 0.5s;
+	transition: background 0.4s 0.5s;
+	margin-bottom:10px;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+}
+
+.box.expanded { width: 55%;}
+
+.box.hidden { display: none;}
+
+.specific-form {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--colorBackGround);
+    padding: 20px;
+    box-sizing: border-box;
+    border: solid 1px var(--colorBtnsActive);
+}
+.box.expanded .specific-form {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+
+.citys {
+    grid-template:
+        "A1 A1 A1 B1 C1 C1" 7%
+        "A2 A2 A2 B2 C2 C2" 9%
+        "A3 A3 A3 A3 B3 B3" 7%
+        "A4 A4 A4 A4 B4 B4" 9%
+        "A5 A5 A5 A5 A5 A5" 48%
+        "A6 A6 B6 B6 C6 C6" 7%
+        "A7 A7 B7 B7 C7 C7" 9%
+        ". B8 B8 B8 B8 ." 8%
+        / 1fr 1fr 1fr 10% 1fr 1fr
+    ;
+}
+
+.citys label, .guides label, .turists label{
+    text-transform: uppercase;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1rem;
+    width: 90%;
+    height: 94%;
+    height: 100%;
+    text-align: center;
+    align-content: end;
+}
+
+.citys input, .guides input, .guides select,
+.turists input, .turists select {
+    font-size: 1rem;
+    height: 1.5rem;
+    width: 95%;
+    border: none;
+    text-align: center;
+}
+
+.lb1 { grid-area: A1;}
+.inpt1 { grid-area: A2;}
+
+.lb2 { grid-area: B1;}
+.inpt2 { grid-area: B2;}
+
+.lb3 { grid-area: C1;}
+.inpt3 { grid-area: C2;}
+
+.lb4 { grid-area: A3;}
+.inpt4 { grid-area: A4;}
+
+.lb5 { grid-area: B3;}
+.inpt5 { grid-area: B4;}
+
+.field1 {
+    height: 90%;
+    width: 100%;
+    grid-area: A5;
+    display: grid;
+    grid-template:
+        "fa1 fa1 fa1 fa1 fa1 fb1" 20%
+        "fa2 fa2 fa2 fa2 fa2 fb2" 25%
+        "fa3 fa3 fa3 fa3 fb3 fb3" 20%
+        "fa4 fa4 fa4 fa4 fb4 fb4" 25% / 1fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+    align-content: center;
+}
+
+.lb6 { grid-area: fa1;}
+.inpt6 { grid-area: fa2;}
+
+.lb7 { grid-area: fb1;}
+.inpt7 { grid-area: fb2;}
+
+.lb8 { grid-area: fa3;}
+.inpt8 { grid-area: fa4;}
+
+.lb9 { grid-area: fb3;}
+.inpt9 { grid-area: fb4;}
+
+.lb10 { grid-area: A6;}
+.inpt10 { grid-area: A7;}
+
+.lb11 { grid-area: B6;}
+.inpt11 { grid-area: B7;}
+
+.lb12 { grid-area: C6;}
+.inpt12 { grid-area: C7;}
+
+.btnCadastro {
+    grid-area: B8;
+    width: 40%;
+    height: 80%;
+    border-radius: 0.5rem;
+    background: var(--colorBtns);
+    font-weight: bold;
+}
+
+.btnCadastro:hover{
+    background: var(--colorBtnsHover);
+    color: #ffffff;
+}
+.btnCadastro:active{
+    background: var(--colorBtnsActive);
+    color: #ffffff;
+}
+
+.guides {
+    grid-template:
+        "A1 A1 B1" 10%
+        "A2 A2 B2" 10%
+        "A3 A3 B3" 10%
+        "A3 A3 B4" 10%
+        "A5 B5 C5" 10%
+        "A6 B6 C6" 10%
+        "B7 B7 B7" 10%
+        /1fr 1fr 1fr
+    ;
+}
+
+.gLb1 { grid-area: A1;}
+.gInpt1 { grid-area: A2;}
+
+.gLb2 { grid-area: B1;}
+.gInpt2 { grid-area: B2;}
+
+.motorista {
+    width: 100%;
+    height: 100%;
+    grid-area: A3;
+    display: grid;
+    grid-template:
+        "ma1 ma1" 35%
+        "ma2 mb2" 30%
+        "ma3 mb3" 35% 
+        / 20% 20%
+    ;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+
+}
+.gLb3 { grid-area: ma1;}
+
+.mLb1 { grid-area: ma2;}
+.mLb2 { grid-area: mb2;}
+
+.gInpt3 { grid-area: ma3;}
+
+.gInpt4 { grid-area: mb3;}
+.gLb4 { grid-area: B3;}
+
+.gInpt5 { grid-area: B4;}
+.gLb5 { grid-area: A5;}
+
+.gInpt6 { grid-area: A6;}
+.gLb6 { grid-area: B5;}
+
+.gInpt7 { grid-area: B6;}
+.gLb7 { grid-area: C5;}
+
+.gInpt8 { grid-area: C6;}
+
+.btnGuide { grid-area: B7;}
+
+.turists {
+    grid-template:
+        "A1 B1 C1" 8%
+        "A2 B2 C2" 10%
+        "A3 A3 A3" 20%
+        "A3 A3 A3" 20%
+        ". B5 ." 8%
+        ". B6 ." 10%
+        "A7 B7 C7" 8%
+        "A8 B8 C8" 10%
+        "A9 A9 A9" 10%
+        /1fr 1fr 1fr
+    ;
+}
+
+.tLb1 { grid-area: A1;}
+.tInpt1 { grid-area: A2;}
+
+.tLb2 { grid-area: B1;}
+.tInpt2 { grid-area: B2;}
+
+.tLb3 { grid-area: C1;}
+.tInpt3 { grid-area: C2;}
+
+.field2  {
+    width: 95%;
+    height: 85%;
+    grid-area: A3;
+    display: grid;
+    grid-template:
+        "f2a1 f2a1 f2a1 f2b1 f2b1" 15%
+        "f2a2 f2a2 f2a2 f2b2 f2b2" 20%
+        "f2a3 f2c3 f2c3 f2d3 f2b3" 15%
+        "f2a4 f2c4 f2c4 f2d4 f2b4" 20%
+        / 1fr 1fr 1fr 1fr 1fr
+    ;
+    align-items: center;
+    justify-items: center;
+    align-content: space-evenly;
+}
+.tLb4 { grid-area: f2a1;}
+.tInpt4 { grid-area: f2a2;}
+
+.tLb5 { grid-area: f2b1;}
+.tInpt5 { grid-area: f2b2;}
+
+.tLb6 { grid-area: f2a3;}
+.tInpt6 { grid-area: f2a4;}
+
+.tLb7 { grid-area: f2b3;}
+.tInpt7 { grid-area: f2b4;}
+
+.tLb12 { grid-area: f2c3;}
+.tInpt12 { grid-area: f2c4;}
+
+.tLb13 { grid-area: f2d3;}
+.tInpt13 { grid-area: f2d4;}
+
+.tLb8 { grid-area: B5;}
+.tInpt8 { grid-area: B6;}
+
+.tLb9 { grid-area: A7;}
+.tInpt9 { grid-area: A8;}
+
+.tLb10 { grid-area: B7;}
+.tInpt10 { grid-area: B8;}
+
+.tLb11 { grid-area: C7;}
+.tInpt11 { grid-area: C8;}
+
+.turistBtn { grid-area: A9;}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    color: var(--colorBtns);
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1;
+}
+.close-btn:hover { color: var(--colorBtnsHover);}
+.close-btn:active { color: var(--colorBtnsActive);}
+
+.box:hover {
+    background: rgba(255,255,255,0);
+	-webkit-transition-delay: 0s;
+	-ms-transition-delay: 0s;
+	transition-delay: 0s;
+}
+
+.box img {
+    font-family: 'Dancing Script', cursive;
+    font-size: 180px;
+    line-height: 370px;
+    margin: 0;
+    font-weight: 400;
+    width: 100%;
+}
+
+.box span {
+    display: block;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 25px;
+    padding: 5px 10px;
+    text-transform: uppercase;
+}
+
+.box h3,
+.box span {
+    -webkit-transition: color 0.4s 0.5s;
+	-ms-transition: color 0.4s 0.5s;
+	transition: color 0.4s 0.5s;
+}
+
+.box:hover h3,
+.box:hover span {
+	color: #fff;
+	-webkit-transition-delay: 0s;
+	-ms-transition-delay: 0s;
+	transition-delay: 0s;
+}
+
+.box svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.box svg line {
+    stroke-width: 3;
+    stroke: var(--colorBtnsHover);
+    fill: none;
+    -webkit-transition: all .8s ease-in-out;
+	-ms-transition: all .8s ease-in-out;
+	transition: all .8s ease-in-out;
+}
+
+.box:hover svg line {
+	-webkit-transition-delay: 0.1s;
+	-ms-transition-delay: 0.1s;
+	transition-delay: 0.1s;
+}
+
+.box svg line.top,
+.box svg line.bottom {
+	stroke-dasharray: 330 240; 
+}
+
+.box svg line.left,
+.box svg line.right {
+	stroke-dasharray: 490 400;
+}
+
+.box:hover svg line.top {
+	-webkit-transform: translateX(-600px);
+	-ms-transform: translateX(-600px);
+	transform: translateX(-600px);
+}
+
+.box:hover svg line.bottom {
+	-webkit-transform: translateX(600px);
+	-ms-transform: translateX(600px);
+	transform: translateX(600px);
+}
+
+.box:hover svg line.left {
+	-webkit-transform: translateY(920px);
+	-ms-transform: translateY(920px);
+	transform: translateY(920px);
+}
+
+.box:hover svg line.right {
+	-webkit-transform: translateY(-920px);
+	-ms-transform: translateY(-920px);
+	transform: translateY(-920px);
+}
+
+.demo_3 .box {
+    background: rgba(0, 0, 0, 0);
+    color: #ffffff;
+    box-shadow: none;
+    -webkit-transition: all .5s ease 0s;
+	-ms-transition: all .5s ease 0s;
+	transition: all .5s ease 0s;
+}
+
+.demo_3 .box:hover {
+    background: var(--colorThird);
+}
+
+.demo_3 .box h3,
+.demo_3 .box span {
+	-webkit-transition: all .5s ease 0s;
+	-ms-transition: all .5s ease 0s;
+	transition: all .5s ease 0s;
+}
+.demo_3 .box:hover h3, .demo_3 .box:hover span {
+	-webkit-transform: scale(.8);
+	-ms-transform: scale(.8);
+		transform:scale(.8);
+}
+.demo_3 .box svg line {
+	-webkit-transition: all .5s;
+	-ms-transition: all .5s;
+	transition: all .5s;
+}
+
+.demo_3 .box:hover svg line {
+	stroke-width: 10;
+	-webkit-transition-delay: 0s;
+	-ms-transition-delay: 0s;
+	transition-delay: 0s;
+}
+
+.demo_3 .box:hover svg line.top {
+	-webkit-transform: translateX(-300px);
+	-ms-transform: translateX(-300px);
+	transform: translateX(-300px);
+}
+
+.demo_3 .box:hover svg line.bottom {
+	-webkit-transform: translateX(300px);
+	-ms-transform: translateX(300px);
+	transform: translateX(300px);
+}
+
+.demo_3 .box:hover svg line.left {
+	-webkit-transform: translateY(460px);
+	-ms-transform: translateY(460px);
+	transform: translateY(460px);
+}
+
+.demo_3 .box:hover svg line.right {
+	-webkit-transform: translateY(-460px);
+	transform: translateY(-460px);
+}
+
+.login-form {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.containerLoginForm {
+    width: 100%;
+    max-width: 400px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.cardLoginForm {
+    width: 85%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: var(--colorSecond);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.form-img {
+    width: 100%;
+    align-content: center;
+    text-align: center;
+}
+.form-img img {
+    width: 40%;
+    border-radius: 4rem;
+}
+  
+.cardLoginForm h2 {
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+    font-family: var(--fontTitles);
+    font-size: 2.5rem;
+    margin: 0.4rem;
+}
+
+.userPatch {
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+  
+.cardLoginForm form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+  
+.cardLoginForm input {
+    padding: 10px;
+    margin-bottom: 12px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    transition: border-color 0.3s ease-in-out;
+    outline: none;
+    color: #000000;
+}
+  
+.cardLoginForm input:focus { border-color: #3498db;}
+  
+.cardLoginForm button {
+    background-color: var(--colorBtns);
+    color: #000000;
+    font-weight: bolder;
+    text-transform: uppercase;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+  
+.cardLoginForm button:hover {
+    background-color: var(--colorBtnsHover);
+    color: #ffffff;
+}
+
+.cardLoginForm span {
+    width: 100%;
+    margin: 1rem 0 0 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #ffffff;
+    text-align: center;
+}
+
+.cardLoginForm a { color: var(--colorBtns);}
+.cardLoginForm a:hover { color: var(--colorBtnsHover);}
+.cardLoginForm a:active { color: var(--colorBtnsActive);}
+
+.sidenav {
+    background-color: var(--colorSecond);
+    color: #ffffff;
+    height: 100%;
+    left: 0;
+    overflow-x: hidden;
+    position: absolute;
+    width: 15%;
+    display: flex;
+    z-index: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.profile {
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+    align-content: center;
+}
+
+.profile img {
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px 1px grey;
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.job {
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.sidenav-url { width: 100%;}
+
+.url, hr { text-align: center;}
+
+.url hr {
+    margin-left: 20%;
+    width: 60%;
+}
+
+.url a {
+    color: #818181;
+    display: block;
+    font-size: 20px;
+    margin: 10px 0;
+    padding: 6px 8px;
+    text-decoration: none;
+}
+
+.url a:hover, .url .active {
+    background-color: #e8f5ff;
+    border-radius: 28px;
+    color: #000;
+    margin-left: 14%;
+    width: 65%;
+}
+
+.profileContainer {
+    position: absolute;
+    width: 85%;
+    height: 79%;
+    top: 9%;
+    left: 15%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-between;
+}
+
+.profileContainer h2 {
+    color: #ffffff;
+    font-family: var(--fontTitles);
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.cardProfile {
+    display: flex;
+    width: 100%;
+    height: 85%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-evenly;
+}
+
+.cardProfileBody-Personal {
+    width: 45%;
+    height: 95%;
+    background: var(--colorStandart);
+    border-radius: 1rem;
+}
+
+.cardProfileTitle {
+    width: 95%;
+    height: 5%;
+    padding: 10px 0px 10px 10px;
+    display: inline-flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cardSocialTitle { padding-left: 10px;}
+
+.cardProfileTitle h2 { width: 44%;}
+
+.cardProfileTitle i {
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+.cardProfileTitle i:hover {
+    color: var(--colorBtnsHover);
+}
+.cardProfileTitle i:active {
+    color: var(--colorBtnsActive);
+}
+
+.cardProfileBody-Infos {
+    width: 50%;
+    height: 95%;
+    overflow: auto;
+    border-radius: 1rem;
+    background: var(--colorThird);
+}
+
+.cardProfileBody-Inputs {
+    width: 100%;
+    height: 95%;
+    overflow: auto;
+}
+
+.cardProfileTuristas, .cardProfileTuristas form {
+    width: 100%;
+    height: 95%;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.submitEdit {
+    width: 100%;
+    text-align: center;
+}
+
+.btnAtt {
+    width: 25%;
+    background-color: var(--colorBtns);
+    color: #000000;
+    font-weight: bolder;
+    text-transform: uppercase;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.pontosCadastrados {
+    color: #ffffff;
+}
+
+.formNewPonto {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.formNewPonto label {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    width: 50%;
+}
+
+.fieldNewPonto {
+    width: 100%;
+    height: 40%;
+}
+
+.cardSocialMedia {
+    width: 90%;
+    height: 15%;
+    left: 5%;
+    border-radius: 1rem;
+    position: relative;
+    background: var(--colorThird);
+}
+
+.social-media {
+    width: 20%;
+    padding: 0 0 0 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}

@@ -1,0 +1,90 @@
+<nav class="navTopMenu">
+    <div class="logo">
+        <a href="/home"><img src="/imgs/monkey-5.jpg" alt="logomarca"></a>
+    </div>
+    <ul class="topMenu">
+        <li class="liHover">
+            <div id="myBtnCurrency" class="currencyLanguage">
+                <div class="language">
+                    <img src="/imgs/icons/languagesIcon.webp" alt="Icone idioma">
+                    <span id="lang">PT-BR</span>
+                </div>
+                <div class="currency">
+                    <img src="/imgs/icons/currencyIcon.webp" alt="Icone moeda ">
+                    <span id="coin">BRL$</span>
+                </div>
+            </div>
+        </li>
+        <li>
+            <% if (!loggedOut) { %>
+                <div class="loginBtn">
+                    <a href="/profileUser"><img src="/imgs/icons/iconLogin.webp" alt=""></a>
+                    <div class="buttonOut">
+                        <a href="/logout">Logout</a>
+                    </div>
+                </div>
+            <% } else { %>
+                <div class="loginBtn">
+                    <a href="/profileUser"><img src="/imgs/icons/iconLogin.webp" alt=""></a>
+                    <div class="buttonIn">
+                        <a class="login" href="/login">Login</a>
+                        <a class="cadastrar" href="/cadastro">Cadastrar</a>
+                    </div>
+                </div>
+            <% } %>
+        </li>
+        <li class="liHover liHome">
+            <a href="/home">INICIO</a>
+        </li>
+    </ul>
+</nav>
+<div id="myModalCurrency" class="modalCurrency">
+    <div class="modal-currency-content">
+        <div class="modal-currency-header">
+          <span class="close">&times;</span>
+          <h2>IDIOMA/MOEDA</h2>
+        </div>
+        <div class="modal-currency-body">
+            <div class="lang">
+                <label for="languages">IDIOMAS</label>
+                <select name="languages" id="languagesList">
+                    <option value="">Choose a language...</option>
+                    <option value="AR">Arabic</option>
+                    <option value="BN">Bengali</option>
+                    <option value="ZH">Chinese (Mandarin)</option>
+                    <option value="EN">English</option>
+                    <option value="FR">French</option>
+                    <option value="DE">German</option>
+                    <option value="HI">Hindi</option>
+                    <option value="JA">Japanese</option>
+                    <option value="PT-BR">Portuguese</option>
+                    <option value="RU">Russian</option>
+                    <option value="ES">Spanish</option>
+                </select>
+            </div>
+            <div class="coin">
+                <label for="currency">MOEDAS</label>
+                <select name="currency" id="currencyList">
+                    <option value="">Choose a currency...</option>
+                    <option value="USD$" label="US dollar">USD</option>
+                    <option value="EUR$" label="Euro">EUR</option>
+                    <option value="JPY$" label="Japanese yen">JPY</option>
+                    <option value="GBP$" label="Pound sterling">GBP</option>
+                    <option value="AUD$" label="Australian dollar">AUD</option>
+                    <option value="CHF$" label="Swiss franc">CHF</option>
+                    <option value="CAD$" label="Canadian dollar">CAD</option>
+                    <option value="CNY$" label="Chinese yuan">CNY</option>
+                    <option value="BRL$" label="Brazilian real">BRL</option>
+                    <option value="TRY$" label="Turkish lira">TRY</option>
+                    <option value="ARS$" label="Argentine peso">ARS</option>
+                </select>
+            </div>
+            <div class="select">
+                <button class="btnSelect" onclick="changeCountry();">SELECIONAR</button>
+            </div>
+        </div>
+        <div class="modal-currency-footer">
+          <h3>Traveling Monkey - Todos os direitos reservados -</h3>
+        </div>
+      </div>
+</div>

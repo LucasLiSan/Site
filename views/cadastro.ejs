@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+    <html lang="pt-br">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="/css/style.css">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel+Decorative:wght@400;700;900&family=Eagle+Lake&family=Prata&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+            <script src="https://kit.fontawesome.com/aeb0f33aae.js" crossorigin="anonymous"></script>
+            <script src="/js/script.js"></script>
+            <title>Traveling Monkey</title>
+        </head>
+        <body>
+            <%- include ('partials/nav.ejs') %>
+            <section class="demo_3">
+                <h1>CADASTRE-SE</h1>
+                <div class="grid">
+                    <div class="box" id="box1">
+                        <button class="close-btn">&times;</button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                            <line class="top" x1="0" y1="0" x2="900" y2="0"/>
+                            <line class="left" x1="0" y1="460" x2="0" y2="-920"/>
+                            <line class="bottom" x1="300" y1="460" x2="-600" y2="460"/>
+                            <line class="right" x1="300" y1="0" x2="300" y2="1380"/>
+                        </svg>
+                        <h3>
+                            <img src="imgs/icons/iconCidade.webp" alt="Icone ponto turistico">
+                        </h3>
+                        <span>Cidade <br>(Ponto turistico)</span>
+                        <form class="specific-form citys" action="/createUser" method="POST">
+                            <input type="text" name="profile" value="cidade" hidden>
+
+                            <label class="lb1" for="nomeCidade">Cidade:</label>
+                            <input class="inpt1" name="nomeCidade" type="text" placeholder="Nome da cidade">
+
+                            <label class="lb2" for="ufCidade">UF:</label>
+                            <input class="inpt2" name="ufCidade" type="text" placeholder="UF" required>
+
+                            <label class="lb3" for="cnpjCidade">CNPJ:</label>
+                            <input class="inpt3" name="cnpjCidade" type="text" placeholder="CNPJ da Cidade" required>
+
+                            <label class="lb4" for="orgRespCidade">Orgão responsável:</label>
+                            <input class="inpt4" name="orgRespCidade" type="text" placeholder="Secretária/Diretoria responsável pelo Turismo local" required>
+
+                            <label class="lb5" for="cnpjOrgRespCidade">CNPJ:</label>
+                            <input class="inpt5" name="cnpjOrgRespCidade" type="text" placeholder="CNPJ do órgão responsável" required>
+                            
+                            <fieldset class="field1">
+                                <legend>Endereço do órgão responsável pelo turismo:</legend>
+                                <label class="lb6" for="endRuaOrgRespCidade">Logradouro:</label>
+                                <input class="inpt6" name="endRuaOrgRespCidade" type="text" placeholder="Rua/Avenida/Travessa/Viela" required>
+
+                                <label class="lb7" for="endNumOrgRespCidade">Número:</label>
+                                <input class="inpt7" name="endNumOrgRespCidade" type="text" placeholder="Número" required>
+
+                                <label class="lb8" for="endBairroOrgRespCidade">Bairro:</label>
+                                <input class="inpt8" name="endBairroOrgRespCidade" type="text" placeholder="Bairro" required>
+                                
+                                <label class="lb9" for="endCepOrgRespCidade">CEP:</label>
+                                <input class="inpt9" name="endCepOrgRespCidade" type="text" placeholder="CEP" required>
+                            </fieldset>
+                            
+                            <label class="lb10" for="telOrgRespCidade">Telefone:</label>
+                            <input class="inpt10" name="telOrgRespCidade" type="text" placeholder="Telefone" required>
+                            
+                            <label class="lb11" for="emailOrgRespCidade">Email:</label>
+                            <input class="inpt11" name="emailOrgRespCidade" type="text" placeholder="EMAIL" required>
+
+                            <label class="lb12" for="passwordCidade">Senha:</label>
+                            <input class="inpt12" name="passwordCidade" type="password" placeholder="Defina uma senha" required>
+
+                            <button type="submit" class="btnCadastro">CADASTRAR</button>
+                        </form>
+                    </div>
+                    <div class="box" id="box1">
+                        <button class="close-btn">&times;</button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                            <line class="top" x1="0" y1="0" x2="900" y2="0"/>
+                            <line class="left" x1="0" y1="460" x2="0" y2="-920"/>
+                            <line class="bottom" x1="300" y1="460" x2="-600" y2="460"/>
+                            <line class="right" x1="300" y1="0" x2="300" y2="1380"/>
+                        </svg>
+                        <h3>
+                            <img src="imgs/icons/iconGuia.webp" alt="Icone ponto turistico">
+                        </h3>
+                        <span>Guia</span>
+                        <form class="specific-form guides" action="/createUser" method="POST">
+                            <input type="text" name="profile" value="guia" hidden>
+
+                            <label class="gLb1" for="nomeGuia">Nome:</label>
+                            <input class="gInpt1" name="nomeGuia" type="text" placeholder="Insira seu nome" required>
+
+                            <label class="gLb2" for="cadGuia">Número de Cadastro:</label>
+                            <input class="gInpt2" name="cadGuia" type="text" placeholder="Insira seu Cadastro" required>
+
+                            <div class="motorista">
+                                <label class="gLb3" for="motorGuia">Motorista:</label>
+                                <label class="mLb1">SIM</label>
+                                <input class="gInpt3" name="motorGuia" type="radio" value="Sim" required>
+                                <label class="mLb2">NÃO</label>
+                                <input class="gInpt4" name="motorGuia" type="radio" value="Não" required>
+                            </div>
+
+                            <label class="gLb4" for="telGuia">Telefone:</label>
+                            <input class="gInpt5" name="telGuia" type="text" placeholder="Telefone" required>
+
+                            <label class="gLb5" for="idiomaGuia">Idioma Principal</label>
+                            <select class="gInpt6" name="idiomaGuia" required>
+                                <option value="">Escolha seu idioma...</option>
+                                <option value="DE">Alemão</option>
+                                <option value="AR">Árabe</option>
+                                <option value="BN">Bengali</option>
+                                <option value="ZH">Chines (Mandarin)</option>
+                                <option value="ES">Espanhol</option>
+                                <option value="FR">Frances</option>
+                                <option value="HI">Hindi</option>
+                                <option value="EN">Inglês</option>
+                                <option value="JA">Japones</option>
+                                <option value="PT-BR">Portugues</option>
+                                <option value="RU">Russo</option>
+                            </select>
+                            
+                            <label class="gLb6" for="emailGuia">Email:</label>
+                            <input class="gInpt7" name="emailGuia" type="text" placeholder="EMAIL" required>
+
+                            <label class="gLb7" for="passwordGuia">Senha:</label>
+                            <input class="gInpt8" name="passwordGuia" type="password" placeholder="Defina uma senha" required>
+
+                            <button type="submit" class="btnCadastro btnGuide">CADASTRAR</button>
+                        </form>
+                    </div>
+                    <div class="box" id="box1">
+                        <button class="close-btn">&times;</button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+                            <line class="top" x1="0" y1="0" x2="900" y2="0"/>
+                            <line class="left" x1="0" y1="460" x2="0" y2="-920"/>
+                            <line class="bottom" x1="300" y1="460" x2="-600" y2="460"/>
+                            <line class="right" x1="300" y1="0" x2="300" y2="1380"/>
+                        </svg>
+                        <h3>
+                            <img src="imgs/icons/iconTurista.webp" alt="Icone ponto turistico">
+                        </h3>
+                        <span>Turista</span>
+                        <form class="specific-form turists" action="/createUser" method="POST">
+                            <input type="text" name="profile" value="turista" hidden>
+
+                            <label class="tLb1" for="nomeTurista">Nome:</label>
+                            <input class="tInpt1" name="nomeTurista" type="text" placeholder="Insira seu nome" required>
+
+                            <label class="tLb2" for="cpfTurista">CPF:</label>
+                            <input class="tInpt2" name="cpfTurista" type="text" placeholder="Insira seu CPF" required>
+
+                            <label class="tLb3" for="nascTurista">Data de nascimento:</label>
+                            <input class="tInpt3" name="nascTurista" type="date" placeholder="Data de nascimento" required>
+
+                            <fieldset class="field2">
+                                <legend>Endereço:</legend>
+                                <label class="tLb4" for="endRuaTurista">Rua:</label>
+                                <input class="tInpt4" name="endRuaTurista" type="text" placeholder="Logradouro" required>
+
+                                <label class="tLb5" for="endBairroTurista">Bairro:</label>
+                                <input class="tInpt5" name="endBairroTurista" type="text" placeholder="Bairro" required>
+                                
+                                <label class="tLb6" for="endNumTurista">Número:</label>
+                                <input class="tInpt6" name="endNumTurista" type="text" placeholder="Numero" required>
+
+                                <label class="tLb12" for="endCidadeTurista">Cidade:</label>
+                                <input class="tInpt12" name="endCidadeTurista" type="text" placeholder="Cidade" required>
+
+                                <label class="tLb13" for="endUfTurista">UF:</label>
+                                <select class="tInpt13" id="endUfTurista" name="endUfTurista" required>
+                                    <option value="">UF</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                    <option value="EX">Estrangeiro</option>
+                                </select>
+                                
+                                <label class="tLb7" for="endCepTurista">CEP:</label>
+                                <input class="tInpt7" name="endCepTurista" type="text" placeholder="CEP" required>
+                            </fieldset>
+
+                            <label class="tLb8" for="idiomaTurista">Idioma de Preferência</label>
+                            <select class="tInpt8" name="idiomaTurista" required>
+                                <option value="">Escolha seu idioma...</option>
+                                <option value="DE">Alemão</option>
+                                <option value="AR">Árabe</option>
+                                <option value="BN">Bengali</option>
+                                <option value="ZH">Chines (Mandarin)</option>
+                                <option value="ES">Espanhol</option>
+                                <option value="FR">Frances</option>
+                                <option value="HI">Hindi</option>
+                                <option value="EN">Inglês</option>
+                                <option value="JA">Japones</option>
+                                <option value="PT-BR">Portugues</option>
+                                <option value="RU">Russo</option>
+                            </select>
+                            
+                            <label class="tLb9" for="telTurista">Telefone:</label>
+                            <input class="tInpt9" name="telTurista" type="text" placeholder="Telefone" required>
+
+                            <label class="tLb10" for="emailTurista">Email:</label>
+                            <input class="tInpt10" name="emailTurista" type="text" placeholder="EMAIL" required>
+
+                            <label class="tLb11" for="passwordTurista">Senha:</label>
+                            <input class="tInpt11" name="passwordTurista" type="password" placeholder="Defina uma senha" required>
+
+                            <button type="submit" class="btnCadastro turistBtn">CADASTRAR</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+            <%- include ('partials/footer.ejs') %>

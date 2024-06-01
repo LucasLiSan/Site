@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+    <html lang="pt-br">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="/css/style.css">
+            <link rel="preconnect" href="https://fonts.googleapis.com">
+            <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+            <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel+Decorative:wght@400;700;900&family=Eagle+Lake&family=Prata&display=swap" rel="stylesheet">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+            <script src="/js/script.js"></script>
+            <title>Traveling Monkey</title>
+        </head>
+        <body>
+            <%- include ('nav.ejs') %>
+            
+            <header class="headerBody">
+                <section class="searchSection">
+                    <div class="searchSectionTitles">
+                        <h1>Traveling Monkey</h1>
+                        <h2>Te guiamos aos guias</h2>
+                    </div>
+                    <div class="searchSectionOptions">
+                        <form class="searchForm" action="" method="GET">
+                            <div class="destiny searchDivHover">
+                                <img src="/imgs/icons/searchIcon.webp" alt="Lupa">
+                                <label for="destinyList">Destino:</label>
+                                <input list="destinyList" id="destinyChoice" name="destinyChoice" />
+                                <datalist id="destinyList">
+                                    <option value="Registro">Registro</option>
+                                    <option value="Eldorado">Eldorado</option>
+                                    <option value="Iguape">Iguape</option>
+                                </datalist>  
+                            </div>
+                            <div class="dates searchDivHover">
+                                <label id="dateLabelIn" for="dateIn">Ida:</label>
+                                <input type="date" name="dateIn" id="dateIn">
+                                <label id="dateLabelOut" for="dateOut">Volta:</label>
+                                <input type="date" name="dateOut" id="dateOut">
+                            </div>
+                            <div class="people searchDivHover">
+                                <label id="peopleLabel" for="turists">Turistas:</label>
+                                <select name="turists" id="turists">
+                                    <option value="ADULTOS">ADULTOS</option>
+                                    <option value="CRIANÇAS">CRIANÇA</option>
+                                    <option value="PCDs">PCDs</option>
+                                </select>
+                            </div>
+                            <div id="searchFormSubmit">
+                                <input type="submit" value="PESQUISAR">
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </header>

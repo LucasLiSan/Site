@@ -1,0 +1,14 @@
+Digital Ocean
+
+fatecdesenvolvimentoweb@gmail.com
+web.Fatec@2024
+
+
+Droplet
+SistemaLoja
+
+root
+admin123@Fatec
+
+IP
+167.71.162.67

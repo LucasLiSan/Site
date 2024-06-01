@@ -1,0 +1,51 @@
+<%- include ('partials/header.ejs') %>
+
+<main class="cidadesBody">
+    <h1>BUSCA RÁPIDA DE PONTOS</h1>
+
+    <table  class="cidadesTable">
+        <thead>
+            <tr>
+                <!--<th></th>-->
+                <th>NOME: 
+                    <span class="material-symbols-outlined">swap_vert</span>
+                </th>
+                <th>PONTO TURISTICO 
+                    <span class="material-symbols-outlined">swap_vert</span>
+                </th>
+                <th>SITUAÇÃO 
+                    <span class="material-symbols-outlined">swap_vert</span>
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <% pontos.forEach(function(ponto){ %>
+                <tr>
+                    <!--<td><img src="<%= ponto.profilePic %>" alt=""></td>-->
+                    <td><%= ponto.nome %></td>
+                    <td><%= ponto.pontoTuristico %></td>
+                    <td><%= ponto.operacao %></td>
+                    <td>
+                        <div class="btnsActionscidades">
+                            <a class="editarcidade" href="/cidades/edit/<%= ponto.id %>">EDITAR</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="btnsActionscidades">
+                            <a class="deletarcidade" href="/cidades/delete/<%= ponto.id %>" onclick="return confirm('Tem certeza que deseja excluir o cadastro do cidade: <%= ponto.nome %>?')">EXCLUIR</a>
+                        </div>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="4"></th>
+            </tr>
+        </tfoot>
+    </table>
+</main>
+
+<%- include ('partials/footer.ejs') %>

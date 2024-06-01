@@ -1,0 +1,38 @@
+<%- include ('partials/header.ejs') %>
+    <main class="cidadesBody">
+        <h1>BUSCA RÁPIDA DE CIDADES</h1>
+
+        <table  class="cidadesTable">
+            <thead>
+                <tr>
+                    <!--<th></th>-->
+                    <th>NOME: 
+                        <span class="material-symbols-outlined">swap_vert</span>
+                    </th>
+                    <th>PONTO TURISTICO 
+                        <span class="material-symbols-outlined">swap_vert</span>
+                    </th>
+                    <th>SITUAÇÃO 
+                        <span class="material-symbols-outlined">swap_vert</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% pontos.forEach(function(ponto){ %>
+                    <tr>
+                        <!--<td><img src="<%= cidade.profilePic %>" alt=""></td>-->
+                        <td><%= ponto.nomePonto %></td>
+                        <td><%= ponto.endCidadePonto %></td>
+                        <td><%= ponto.valorEntrada %></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="4"></th>
+                </tr>
+            </tfoot>
+        </table>
+    </main>
+
+<%- include ('partials/footer.ejs') %>
