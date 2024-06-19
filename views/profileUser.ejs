@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-    <html lang="pt-br">
-        <head>
-            <meta charset="UTF-8">
+	<html lang="pt-br">
+		<head>
+			<meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="/css/style.css">
             <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -9,426 +9,655 @@
             <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel+Decorative:wght@400;700;900&family=Eagle+Lake&family=Prata&display=swap" rel="stylesheet">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+
             <script src="/js/script.js"></script>
-            <title>Traveling Monkey</title>
-        </head>
-        <body>
-            <%- include ('partials/nav.ejs') %>
-
-            <div class="sidenav">
-                <div class="profile">
-                    <% if (session.userCidade) { %>
-                        <img src="<%= session.userCidade.pic %>" alt="" width="100" height="100">
-                        <div class="name">
-                            <%= session.userCidade.nome %>
-                        </div>
-                    <% } else if (session.userGuia) { %>
-                        <img src="<%= session.userGuia.pic %>" alt="" width="100" height="100">
-                        <div class="name">
-                            <%= session.userGuia.nome %>
-                        </div>
-                    <% } else if (session.userTurista) { %>
-                        <img src="<%= session.userTurista.pic %>" alt="" width="100" height="100">
-                        <div class="name">
-                            <%= session.userTurista.nome %>
-                        </div>
-                    <% } %>
-                    
-                    <% if (session.userCidade) { %>
-                        <div class="job">
-                            <span>Cidade</span>
-                        </div>
-                    <% } else if (session.userGuia) { %>
-                        <div class="job">
-                            <span>Guia de Turismo</span>
-                        </div>
-                    <% } else if (session.userTurista) { %>
-                        <div class="job">
-                            <span>Turista</span>
-                        </div>
-                    <% } %>
-                </div>
-                <div class="sidenav-url">
-                    <div class="url">
-                        <a href="#profile" class="active">Perfil</a>
-                        <hr align="center">
-                    </div>
-                    <div class="url">
-                        <a href="#settings">Configurações</a>
-                        <hr align="center">
-                    </div>
-                </div>
-            </div>
-            <div class="profileContainer">
-                <% if(messages.success) { %>
-                    <div class="alertSuccess">
-                        <%= messages.success %>
-                    </div>
-                <% } %>
-                <div class="cardProfile">
-                    <div class="cardProfileBody-Personal">
-                        <div class="cardProfileTitle">
-                            <i id="editBtnPersonal" class="fa fa-pen fa-xs edit"></i>
-                            <% if (session.userCidade) { %>
-                                <h2>Infos: <%= session.userCidade.nome %></h2>
-                            <% } else if (session.userGuia) { %>
-                                <h2>Infos: <%= session.userGuia.nome %></h2>
-                            <% } else if (session.userTurista) { %>
-                                <h2>Infos: <%= session.userTurista.nome %></h2>
-                            <% } %>
-                        </div>
-                        <div class="cardProfileBody-Inputs">
-                            <% Object.keys(session).forEach(key => { %>
-                                <% if (key.startsWith('user')) { %>
-                                    <div class="cardProfileTuristas">
-                                        <% if (session.userCidade) { %>
-                                            <form method="POST" action="/profileUser/update/<%= session.userCidade.id %>">
-                                                <input type="text" name="user" value="cidade" hidden>
-                                                <input type="text" name="id" value="<%= session[key].id %>" hidden>
-
-                                                <fieldset>
-                                                    <legend>Cidade:</legend>
-                                                    <label>Nome:</label>
-                                                    <input class="editable" type="text" name="nome" value="<%= session[key].nome %>" disabled>
-                                                    
-                                                    <label>CNPJ:</label>
-                                                    <input class="editable" type="text" name="cnpj" value="<%= session[key].cnpj %>" disabled>
-                                                </fieldset>
-                                                <fieldset>
-                                                    <legend>Orgão Responsável:</legend>
-                                                    <label>Nome:</label>
-                                                    <input class="editable" type="text" name="orgResp" value="<%= session[key].orgResp %>" disabled>
-                                                    
-                                                    <label>CNPJ:</label>
-                                                    <input class="editable" type="text" name="cnpjOrgResp" value="<%= session[key].cnpjOrgResp %>" disabled>
-                                                </fieldset>
-                                                <fieldset>
-                                                    <legend>Endereço Orgão Responsável:</legend>
-                                                    <label>Rua:</label>
-                                                    <input class="editable" type="text" name="rua" value="<%= session[key].rua %>" disabled>
-                        
-                                                    <label>Bairro:</label>
-                                                    <input class="editable" type="text" name="bairro" value="<%= session[key].bairro %>" disabled>
-                        
-                                                    <label>Nº:</label>
-                                                    <input class="editable" type="text" name="numero" value="<%= session[key].numero %>" disabled>
-                                                </fieldset>
-                                                <fieldset>
-                                                    <legend>Contato</legend>
-                                                    <label>E-mail:</label>
-                                                    <input type="email" name="email" value="<%= session[key].email %>" disabled>
-                                                    
-                                                    <label>Telefone Principal:</label>
-                                                    <input type="text" name="foneP" value="<%= session[key].telefone %>" disabled>
-                                                </fieldset>                          
-                                        <% } else if (session.userGuia) { %>
-                                            <form method="POST" action="/profileUser/update/<%= session.userGuia.id %>">
-                                                <input type="text" name="user" value="guia" hidden>
-                                                <input type="text" name="id" value="<%= session[key].id %>" hidden>
-
-                                                <fieldset>
-                                                    <legend>Principais</legend>
-
-                                                    <label>Nome:</label>
-                                                    <input class="editable" type="text" name="nome" value="<%= session[key].nome %>" disabled>
-                                                    
-                                                    <label>Cadastro:</label>
-                                                    <input class="editable" type="text" name="cadastro" value="<%= session[key].cadastro %>" disabled>
-                                                </fieldset>
-                                                <fieldset>
-                                                    <legend>Contato</legend>
-
-                                                    <label>E-mail:</label>
-                                                    <input type="email" name="email" value="<%= session[key].email %>" disabled>
-                                                    
-                                                    <label>Telefone Principal:</label>
-                                                    <input type="text" name="foneP" value="" disabled>
-                                                </fieldset>                          
-                                                <fieldset>
-                                                    <legend>Adicionais</legend>
-
-                                                    <div class="motorista">
-                                                        <label class="gLb3" for="motorGuia">Motorista:</label>
-                                                        <label>SIM</label>
-                                                        <input name="motorGuia" type="radio" value="Sim" disabled>
-                                                        <label>NÃO</label>
-                                                        <input name="motorGuia" type="radio" value="Não" disabled>
-                                                    </div>
-                                                    <label>Motorista:</label>
-                                                    <input type="text" name="language" value="<%= session[key].motorista %>" disabled>
-
-                                                    <label>Idioma padrão:</label>
-                                                    <input type="text" name="language" value="<%= session[key].language %>" disabled>
-                        
-                                                    <label>Idiomas adicionais:</label>
-                                                    <input type="text" name="idiomasAdicionais" value="" disabled>
-                        
-                                                    <label>Categoria:</label>
-                                                    <input type="text" name="categoria" value="" disabled>
-                                                </fieldset>
-                                        <% } else if (session.userTurista) { %>
-                                            <form method="POST" action="/profileUser/update/<%= session.userTurista.id %>">
-                                                <input type="text" name="user" value="turista" hidden>
-                                                <input type="text" name="id" value="<%= session[key].id %>" hidden>
-
-                                                <fieldset>
-                                                    <legend>Principais</legend>
-                                                    <label>Nome:</label>
-                                                    <input class="editable" type="text" name="nome" value="<%= session[key].nome %>" disabled>
-                                                    
-                                                    <label>CPF:</label>
-                                                    <input class="editable" type="text" name="cpf" value="<%= session[key].cpf %>" disabled>
-                        
-                                                    <label>NASCIMENTO:</label>
-                                                    <input class="editable" type="date" name="nascimento" value="<%= session[key].nasc %>" disabled>
-                        
-                                                    <label>IDADE:</label>
-                                                    <input type="text" value="<%= session[key].age %>" disabled>
-                                                </fieldset>
-                                                <fieldset>
-                                                    <legend>Endereço:</legend>
-                                                    <label>Rua:</label>
-                                                    <input class="editable" type="text" name="rua" value="<%= session[key].rua %>" disabled>
-                        
-                                                    <label>Bairro:</label>
-                                                    <input class="editable" type="text" name="bairro" value="<%= session[key].bairro %>" disabled>
-                        
-                                                    <label>Nº:</label>
-                                                    <input class="editable" type="text" name="numero" value="<%= session[key].numero %>" disabled>
-                        
-                                                    <label>Cidade:</label>
-                                                    <input class="editable" type="text" name="cidade" value="<%= session[key].cidade %>" disabled>
-                        
-                                                    <label>Estado:</label>
-                                                    <input class="editable" type="text" name="uf" value="<%= session[key].uf %>" disabled>
-                                                </fieldset>
-                                                <fieldset>
-                                                    <legend>Contato</legend>
-                                                    <label>E-mail:</label>
-                                                    <input type="email" name="email" value="<%= session[key].email %>" disabled>
-                                                    
-                                                    <label>Telefone Principal:</label>
-                                                    <input type="text" name="foneP" value="<%= session[key].foneP %>" disabled>
-                                                </fieldset>                          
-                                                <fieldset>
-                                                    <legend>Adicionais</legend>
-                                                    <label>Idioma padrão:</label>
-                                                    <input type="text" name="language" value="<%= session[key].language %>" disabled>
-                        
-                                                    <label>Idiomas adicionais:</label>
-                                                    <input type="text" name="idiomasAdicionais" value="" disabled>
-                        
-                                                    <label>Comorbidades:</label>
-                                                    <input type="text" name="comorbidades" value="" disabled>
-                        
-                                                    <label>Interesses:</label>
-                                                    <input type="text" name="interesses" value="" disabled>
-                                                </fieldset>
-                                            <% } %>
-                                                <input class="btnAtt editable" type="submit" value="ATUALIZAR" onclick="return confirm('Tem certezaque deseja fazer essas alterações?')" disabled>
-                                            </form>
+			<title>Traveling Monkey</title>
+		</head>
+		<body>
+			<%- include ('partials/nav.ejs') %>
+			<div class="sidenav">
+				<div class="profile">
+					<% if (session.userCidade) { %>
+						<img src="<%= session.userCidade.pic %>" alt="" width="100" height="100">
+						<div class="name">
+							<%= session.userCidade.nome %>
+						</div>
+					<% } else if (session.userGuia) { %>
+						<img src="<%= session.userGuia.pic %>" alt="" width="100" height="100">
+						<div class="name">
+							<%= session.userGuia.nome %>
+						</div>
+					<% } else if (session.userTurista) { %>
+						<img src="<%= session.userTurista.pic %>" alt="" width="100" height="100">
+						<div class="name">
+							<%= session.userTurista.nome %>
+						</div>
+					<% } %>
+					<% if (session.userCidade) { %>
+						<div class="job">
+							<span>Cidade</span>
+						</div>
+					<% } else if (session.userGuia) { %>
+						<div class="job">
+							<span>Guia de Turismo</span>
+						</div>
+					<% } else if (session.userTurista) { %>
+						<div class="job">
+							<span>Turista</span>
+						</div>
+					<% } %>
+				</div>
+				<div class="sidenav-url">
+					<div class="url">
+						<a href="#profile" onclick="showPage('perfilPage', this)" class="active">Perfil</a>
+						<hr align="center">
+					</div>
+					<div class="url">
+						<a href="#galeria" onclick="showPage('galeriaPage', this)">Galeria</a>
+						<hr align="center">
+					</div>
+					<div class="url">
+						<a href="#settings" onclick="showPage('settingsPage', this)">Configurações</a>
+						<hr align="center">
+					</div>
+				</div>
+			</div>
+			<div id="settingsPage" class="settingsContainer" style="display: none;">
+				<div class="cardProfileSettings">
+					<div class="cardProfileTitle">
+						<% if (session.userCidade) { %>
+							<h2>Configurações: <%= session.userCidade.nome %></h2>
+						<% } else if (session.userGuia) { %>
+							<h2>Configurações: <%= session.userGuia.nome %></h2>
+						<% } else if (session.userTurista) { %>
+							<h2>Configurações: <%= session.userTurista.nome %></h2>
+						<% } %>
+					</div>
+					<% Object.keys(session).forEach(key => { %>
+						<% if (key.startsWith('user')) { %>
+							<% if (session.userCidade) { %>
+								<form class="Settings" method="POST" action="/profileUser/deletePerfil/<%= session.userCidade.id %>">
+									<input type="text" name="user" value="cidade" hidden>
+									<input type="text" name="id" value="<%= session[key].id %>" hidden>
+							<% } else if (session.userGuia) { %>
+								<form class="Settings" method="POST" action="/profileUser/deletePerfil/<%= session.userGuia.id %>">
+									<input type="text" name="user" value="guia" hidden>
+									<input type="text" name="id" value="<%= session[key].id %>" hidden>
+							<% } else if (session.userTurista) { %>
+								<form class="Settings" method="POST" action="/profileUser/deletePerfil/<%= session.userTurista.id %>">
+									<input type="text" name="user" value="turista" hidden>
+									<input type="text" name="id" value="<%= session[key].id %>" hidden>
+							<% } %>
+									<input class="btnAtt editable" type="submit" value="EXCLUIR CONTA" onclick="return confirm('Tem certezaque deseja excluir sua conta?')">
+								</form>
+						<% } %>
+					<% }); %>
+				</div>
+			</div>
+			<div id="galeriaPage" class="galerieContainer" style="display: none;">
+				<h1>GALERIA DE FOTOS</h1>
+				<div class="section-center">
+                    <div>
+                        <div>
+                            <div class="booking-form">
+								<div class="booking-bg" style="background-image: url('/imgs/Logo1.webp');"></div>
+                                <form action="/upload" method="POST" enctype="multipart/form-data">
+                                    <div class="form-header">
+                                        <h2>Guarde suas recordações!</h2>
                                     </div>
-                                <% } %>
-                            <% }); %>
-                        </div>                     
-                    </div>
-                    <div class="cardProfileBody-Infos">
-                        <div class="cardProfileTitle">
-                            <i id="editBtn-Infos" class="fa fa-pen fa-xs edit"></i>
-                            <% if (session.userCidade) { %>
-                                <h2>Pontos túristicos Cadastrados:</h2>
-                            <% } else if (session.userGuia) { %>
-                                <h2>Histórico de viagens</h2>
-                            <% } else if (session.userTurista) { %>
-                                <h2>Histórico de reservas:</h2>
-                            <% } %>
-                        </div>
-                        <div class="cardHistory">
-                            <% if (session.userCidade) { %>
-                            <div class="newPonto">
-                                <button id="btnNewPonto" class="btnCadastro">NOVO PONTO</button>
-                                <div id="myModalNewPonto" class="modalNewPonto">
-                                    <div class="modal-newPonto-content">
-                                        <div class="modal-newPonto-header">
-                                            <span class="closeModalPonto">&times;</span>
-                                            <h2>NOVO PONTO TURISTICO</h2>
-                                        </div>
-                                        <div class="modal-newPonto-body">
-                                           <form class="formNewPonto" action="">
-                                            <div class="formBloco1">
-												<label for="nomePonto">Nome</label>
-                                               <input type="text" name="nomePonto">
-
-                                               <label for="modalidade">Categoria</label>
-                                               <select name="modalidade" id="modalidadeTuristica">
-                                                    <option value="1">Locais históricos</option>
-                                                    <option value="2">Museus e galerias de arte</option>
-                                                    <option value="3">Eventos culturais</option>
-                                                    <option value="4">Arte pública</option>
-                                                    <option value="5">Comunidades étnicas</option>
-                                                    <option value="6">Turismo industrial</option>
-                                                    <option value="7">Turismo criativo</option>
-                                                    <option value="8">Edifícios e estruturas</option>
-                                                    <option value="9">Castelos e fortes</option>
-                                                    <option value="10">Templos antigos</option>
-                                                    <option value="11">Pontes e arranha-céus</option>
-                                                    <option value="12">Restaurantes e bares</option>
-                                                    <option value="13">Feiras e mercados</option>
-                                                    <option value="14">Eventos gastronômicos</option>
-                                                    <option value="15">Parques temáticos</option>
-                                                    <option value="16">Parques aquáticos</option>
-                                                    <option value="17">Carnavais</option>
-                                                    <option value="18">Praias</option>
-                                                    <option value="19">Montanhas</option>
-                                                    <option value="20">Desertos</option>
-                                                    <option value="21">Florestas</option>
-                                                    <option value="22">Parques nacionais</option>
-                                                    <option value="23">Jardins botânicos</option>
-                                                    <option value="24">Eventos esportivos</option>
-                                                    <option value="25">Corrida de Fórmula 1</option>
-                                                    <option value="26">Regatas de vela</option>
-                                                    <option value="27">Centros comerciais</option>
-                                                    <option value="28">Feiras de artesanato</option>
-                                                    <option value="29">Mercados de rua</option>
-                                                    <option value="30">Lojas de fábrica</option>
-                                                    <option value="31">Trens históricos</option>
-                                                    <option value="32">Zoológicos</option>
-                                                    <option value="33">Aquários</option>
-                                                    <option value="34">Bibliotecas</option>
-                                                    <option value="35">Antigas prisões</option>
-                                                    <option value="36">Museus de história viva</option>
-                                                    <option value="37">Oficinas de artesanato</option>
-                                                    <option value="38">Shows e concertos</option>
-                                                    <option value="39">Feiras e exposições</option>
-                                                    <option value="40">Eventos religiosos</option>
-                                                    <option value="41">Turismo em cavernas</option>
-                                               </select>
-
-                                               <label for="valorEntrada">Valor da entrada</label>
-                                               <input type="text" name="valorEntrada">
-                                            </div>
-                                               <fieldset class="fieldNewPonto">
-                                                   <legend>Endereço</legend>
-
-                                                   <label for="endRuaPonto">Rua:</label>
-                                                   <input type="text" name="endRuaPonto">
-
-                                                   <label for="endBairroPonto">Bairro:</label>
-                                                   <input type="text" name="endBairroPonto">
-
-                                                   <label for="endNumPonto">Número:</label>
-                                                   <input type="text" name="endNumPonto">
-
-                                                   <label for="endCidadePonto">Cidade:</label>
-                                                   <input type="text" name="endCidadePonto">
-
-                                                   <label for="endUfPonto">UF:</label>
-                                                   <input type="text" name="endUfPonto">
-
-                                                   <label for="endCepPonto">CEP:</label>
-                                                   <input type="text" name="endCepPonto">
-
-                                                   <label for="endReferenciaPonto">Referencia:</label>
-                                                   <input type="text" name="endReferenciaPonto">
-
-                                                   <label for="endGeoLatPonto">Latitude (opicional)</label>
-                                                   <input type="text" name="endGeoLatPonto">
-
-                                                   <label for="endGeoLongePonto">Longitude (opicional)</label>
-                                                   <input type="text" name="endGeoLongePonto">
-                                               </fieldset>
-											   <div class="formBloco2">
-													<label for="profilePicPonto">Foto perfil (opicional)</label>
-													<input type="file" name="profilePicPonto" id="profilePicPonto">
-												
-													<input type="submit" class="btnCadastrarNewPonto" value="CADASTRAR">
-											   </div>
-                                           </form> 
-                                        </div>
-                                        <div class="modal-newPonto-footer">
-                                            <h3>Traveling Monkey - Todos os direitos reservados -</h3>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <span class="form-label">Foto</span>
+                                            <input class="form-control" type="file" name="photo" required>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <span class="form-label">Local</span>
+                                            <select class="form-control" name="idPontoFotografado" id="idPontoFotografado">
+												<% ListaPontos.forEach(ponto => { %>
+													<option value="<%= ponto.id %>"><%= ponto.nomePonto %></option>
+												<%}) %>
+											</select>
+                                        </div>
+                                    </div>
+									<% if (session.userCidade) { %>
+										<input type="text" name="idFotografo" value="<%= session.userCidade.id %>" hidden>
+									<% } else if (session.userGuia) { %>
+										<input type="text" name="idFotografo" value="<%= session.userGuia.id %>" hidden>
+									<% } else if (session.userTurista) { %>
+										<input type="text" name="idFotografo" value="<%= session.userTurista.id %>" hidden>
+									<% } %>
+                                    <div class="form-btn">
+                                        <input class="fotoSubmit" type="submit" value="Enviar">
+                                    </div>
+                                </form>
                             </div>
-                            <table class="pontosCadastrados">
-                                <thead>
-                                    <tr>
-                                        <th></th>
-                                        <th>Nome:</th>
-                                        <th>CPF:</th>
-                                        <th>Endereço:</th>
-                                        <th style="text-align: center;" colspan="2">Ações:</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <% PontosTuristicos.forEach(pontos => { %>
-                                        <tr>
-                                            <td><img src="imgs/avatar.png" width="30px"></td>
-                                            <td>
-                                                <%= pontos.nomePonto %>
-                                            </td>
-                                            <td>
-                                                <%= pontos.valorEntrada %>
-                                            </td>
-                                            <td>
-                                                <%= pontos.profilePicPonto %>
-                                            </td>
-                                            <td><a style="color: orange;">Editar</a></td>
-                                            <td><a style="color: red;">Excluir</a></td>
-                                        </tr>
-                                    <% }) %>
-                                </tbody>
-                            </table>
-                            <% } %>
-                            
-                            <!--<div onmousedown="toggleDiv('minha-div-1');"><h3>Toggle Div 1 Visibility</h3></div>
-                            <div id="minha-div-1" style="display:none">
-                                <h3>This is a test!<br>Can you see me?</h3>
-                            </div><br />
-                                <a href="javascript:;" onmousedown="toggleDiv('minha-div-2');">Toggle Div 2 Visibility</a>
-                            <div id="minha-div-2" style="display:none">
-                                <h3>This is a test!<br>Can you see me?</h3>
-                            </div>-->
                         </div>
                     </div>
                 </div>
-        
-                <div class="cardSocialMedia">
-                    <div class="cardProfileTitle">
-                        <i id="editBtn-Social" class="fa fa-pen fa-xs edit"></i>
-                        <h2>Conecte-se</h2>
-                    </div>
-                    <div class="social-media">
-                        <span class="fa-stack fa-sm">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-facebook fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="fa-stack fa-sm">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="fa-stack fa-sm">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="fa-stack fa-sm">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-invision fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="fa-stack fa-sm">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="fa-stack fa-sm">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-whatsapp fa-stack-1x fa-inverse"></i>
-                        </span>
-                        <span class="fa-stack fa-sm">
-                            <i class="fas fa-circle fa-stack-2x"></i>
-                            <i class="fab fa-snapchat fa-stack-1x fa-inverse"></i>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        <%- include ('partials/footer.ejs') %>
+				<div class="galeria">
+					<% function groupByPonto(fotos) { %>
+						<% const groupedFotos = {}; %>
+						<% fotos.forEach(foto => { %>
+							<% const pontoId = foto.pontoFotografado ? foto.pontoFotografado.id : 'Desconhecido'; %>
+							<% const pontoNome = foto.pontoFotografado ? foto.pontoFotografado.nomePonto : 'Desconhecido'; %>
+							<% if (!groupedFotos[pontoId]) { %>
+								<% groupedFotos[pontoId] = { nome: pontoNome, fotos: [] }; %>
+							<% } %>
+							<% groupedFotos[pontoId].fotos.push(foto); %>
+						<% }); %>
+						<% return groupedFotos; %>
+					<% } %>
+				
+					<% const groupedFotos = groupByPonto(FotosPontos); %>
+					<% Object.keys(groupedFotos).forEach(pontoId => { %>
+						<fieldset>
+							<legend><%= groupedFotos[pontoId].nome %></legend>
+							<% groupedFotos[pontoId].fotos.forEach(foto => { %>
+								<div class="pics">
+									<div class="thumbnail">
+										<div class="thumb" style="background-image: url('/imgs/uploads/<%= foto.fotos %>');"></div>
+									</div>
+									<div class="dados">
+										<div>
+											<span>Lugar: <%= foto.pontoFotografado ? foto.pontoFotografado.nomePonto : 'Desconhecido' %></span>
+											<span>Data: <%= new Date(foto.dataFoto).toLocaleDateString() %></span>
+										</div>
+										<form action="/profileUser/deleteFoto/<%= foto.id %>" method="POST" style="display:inline;">
+											<button type="submit" onclick="return confirm('Tem certeza que deseja excluir a foto?')">Excluir</button>
+										</form>
+									</div>
+								</div>
+							<% }); %>
+						</fieldset>
+					<% }); %>
+				</div>
+			</div>
+			<div id="perfilPage" class="profileContainer">
+				<% if(messages.success) { %>
+					<div class="alertSuccess">
+						<%= messages.success %>
+					</div>
+				<% } %>
+				<div class="cardProfile">
+					<div class="cardProfileBody-Personal">
+						<div class="cardProfileTitle">
+							<i id="editBtnPersonal" class="fa fa-pen fa-xs edit"></i>
+							<% if (session.userCidade) { %>
+								<h2>Infos: <%= session.userCidade.nome %></h2>
+							<% } else if (session.userGuia) { %>
+								<h2>Infos: <%= session.userGuia.nome %></h2>
+							<% } else if (session.userTurista) { %>
+								<h2>Infos: <%= session.userTurista.nome %></h2>
+							<% } %>
+						</div>
+						<div class="cardProfileBody-Inputs">
+							<% Object.keys(session).forEach(key => { %>
+								<% if (key.startsWith('user')) { %>
+									<div class="cardProfileTuristas">
+										<% if (session.userCidade) { %>
+											<form method="POST" action="/profileUser/update/<%= session.userCidade.id %>">
+												<input type="text" name="user" value="cidade" hidden>
+												<input type="text" name="id" value="<%= session[key].id %>" hidden>
+												<fieldset>
+													<legend>Cidade:</legend>
+													<label>Nome:</label>
+													<input class="editable" type="text" name="nome" value="<%= session[key].nome %>" disabled>
+													<label>CNPJ:</label>
+													<input class="editable" type="text" name="cnpj" value="<%= session[key].cnpj %>" disabled>
+												</fieldset>
+												<fieldset>
+													<legend>Orgão Responsável:</legend>
+													<label>Nome:</label>
+													<input class="editable" type="text" name="orgResp" value="<%= session[key].orgResp %>" disabled>
+													<label>CNPJ:</label>
+													<input class="editable" type="text" name="cnpjOrgResp" value="<%= session[key].cnpjOrgResp %>" disabled>
+												</fieldset>
+												<fieldset>
+													<legend>Endereço Orgão Responsável:</legend>
+													<label>Rua:</label>
+													<input class="editable" type="text" name="rua" value="<%= session[key].rua %>" disabled>
+													<label>Bairro:</label>
+													<input class="editable" type="text" name="bairro" value="<%= session[key].bairro %>" disabled>
+													<label>Nº:</label>
+													<input class="editable" type="text" name="numero" value="<%= session[key].numero %>" disabled>
+												</fieldset>
+												<fieldset>
+													<legend>Contato</legend>
+													<label>E-mail:</label>
+													<input type="email" name="email" value="<%= session[key].email %>" disabled>
+													<label>Telefone Principal:</label>
+													<input type="text" name="foneP" value="<%= session[key].telefone %>" disabled>
+												</fieldset>
+										<% } else if (session.userGuia) { %>
+											<form method="POST" action="/profileUser/update/<%= session.userGuia.id %>">
+												<input type="text" name="user" value="guia" hidden>
+												<input type="text" name="id" value="<%= session[key].id %>" hidden>
+												<fieldset>
+													<legend>Principais</legend>
+													<label>Nome:</label>
+													<input class="editable" type="text" name="nome" value="<%= session[key].nome %>" disabled>
+													<label>Cadastro:</label>
+													<input class="editable" type="text" name="cadastro" value="<%= session[key].cadastro %>" disabled>
+												</fieldset>
+												<fieldset>
+													<legend>Contato</legend>
+													<label>E-mail:</label>
+													<input type="email" name="email" value="<%= session[key].email %>" disabled>
+													<label>Telefone Principal:</label>
+													<input type="text" name="foneP" value="" disabled>
+												</fieldset>                          
+												<fieldset>
+													<legend>Adicionais</legend>
+													<div class="motorista">
+														<label class="gLb3" for="motorGuia">Motorista:</label>
+														<label>SIM</label>
+														<input name="motorGuia" type="radio" value="Sim" disabled>
+														<label>NÃO</label>
+														<input name="motorGuia" type="radio" value="Não" disabled>
+													</div>
+													<label>Motorista:</label>
+													<input type="text" name="language" value="<%= session[key].motorista %>" disabled>
+													<label>Idioma padrão:</label>
+													<input type="text" name="language" value="<%= session[key].language %>" disabled>
+													<label>Idiomas adicionais:</label>
+													<input type="text" name="idiomasAdicionais" value="" disabled>
+													<label>Categoria:</label>
+													<input type="text" name="categoria" value="" disabled>
+												</fieldset>
+										<% } else if (session.userTurista) { %>
+											<form method="POST" action="/profileUser/update/<%= session.userTurista.id %>">
+												<input type="text" name="user" value="turista" hidden>
+												<input type="text" name="id" value="<%= session[key].id %>" hidden>
+												<fieldset>
+													<legend>Principais</legend>
+													<label>Nome:</label>
+													<input class="editable" type="text" name="nome" value="<%= session[key].nome %>" disabled>
+													<label>CPF:</label>
+													<input class="editable" type="text" name="cpf" value="<%= session[key].cpf %>" disabled>
+													<label>NASCIMENTO:</label>
+													<input class="editable" type="date" name="nascimento" value="<%= session[key].nasc %>" disabled>
+													<label>IDADE:</label>
+													<input type="text" value="<%= session[key].age %>" disabled>
+												</fieldset>
+												<fieldset>
+													<legend>Endereço:</legend>
+													<label>Rua:</label>
+													<input class="editable" type="text" name="rua" value="<%= session[key].rua %>" disabled>
+													<label>Bairro:</label>
+													<input class="editable" type="text" name="bairro" value="<%= session[key].bairro %>" disabled>
+													<label>Nº:</label>
+													<input class="editable" type="text" name="numero" value="<%= session[key].numero %>" disabled>
+													<label>Cidade:</label>
+													<input class="editable" type="text" name="cidade" value="<%= session[key].cidade %>" disabled>
+													<label>Estado:</label>
+													<input class="editable" type="text" name="uf" value="<%= session[key].uf %>" disabled>
+												</fieldset>
+												<fieldset>
+													<legend>Contato</legend>
+													<label>E-mail:</label>
+													<input type="email" name="email" value="<%= session[key].email %>" disabled>
+													<label>Telefone Principal:</label>
+													<input type="text" name="foneP" value="<%= session[key].foneP %>" disabled>
+												</fieldset>                          
+												<fieldset>
+													<legend>Adicionais</legend>
+													<label>Idioma padrão:</label>
+													<input type="text" name="language" value="<%= session[key].language %>" disabled>
+													<label>Idiomas adicionais:</label>
+													<input type="text" name="idiomasAdicionais" value="" disabled>
+													<label>Comorbidades:</label>
+													<input type="text" name="comorbidades" value="" disabled>
+													<label>Interesses:</label>
+													<input type="text" name="interesses" value="" disabled>
+												</fieldset>
+										<% } %>
+												<input class="btnAtt editable" type="submit" value="ATUALIZAR" onclick="return confirm('Tem certezaque deseja fazer essas alterações?')" disabled>
+											</form>
+									</div>
+								<% } %>
+							<% }); %>
+						</div>
+					</div>
+					<div class="cardProfileBody-Infos">
+						<div class="cardProfileTitle">
+							<i id="editBtnInfos" class="fa fa-pen fa-xs edit"></i>
+							<% if (session.userCidade) { %>
+								<h2>Pontos túristicos Cadastrados:</h2>
+							<% } else if (session.userGuia) { %>
+								<h2>Histórico de viagens</h2>
+							<% } else if (session.userTurista) { %>
+								<h2>Histórico de reservas:</h2>
+							<% } %>
+						</div>
+						<div class="cardHistory">
+							<% if (session.userCidade) { %>
+								<div class="newPonto">
+									<button id="btnNewPonto" class="btnCadastro btnCadastroNew">NOVO PONTO</button>
+									<div id="myModalNewPonto" class="modalNewPonto" style="display: none;">
+										<div class="modal-newPonto-content">
+											<div class="modal-newPonto-header">
+												<span class="closeModalPonto">&times;</span>
+												<h2>NOVO PONTO TURISTICO</h2>
+											</div>
+											<div class="modal-newPonto-body">
+												<form class="formNewPonto" action="">
+													<div class="formBloco1">
+														<label for="nomePonto">Nome</label>
+														<input type="text" name="nomePonto">
+														<label for="modalidade">Categoria</label>
+														<select name="modalidade" id="modalidadeTuristica">
+															<option value="1">Locais históricos</option>
+															<option value="2">Museus e galerias de arte</option>
+															<option value="3">Eventos culturais</option>
+															<option value="4">Arte pública</option>
+															<option value="5">Comunidades étnicas</option>
+															<option value="6">Turismo industrial</option>
+															<option value="7">Turismo criativo</option>
+															<option value="8">Edifícios e estruturas</option>
+															<option value="9">Castelos e fortes</option>
+															<option value="10">Templos antigos</option>
+															<option value="11">Pontes e arranha-céus</option>
+															<option value="12">Restaurantes e bares</option>
+															<option value="13">Feiras e mercados</option>
+															<option value="14">Eventos gastronômicos</option>
+															<option value="15">Parques temáticos</option>
+															<option value="16">Parques aquáticos</option>
+															<option value="17">Carnavais</option>
+															<option value="18">Praias</option>
+															<option value="19">Montanhas</option>
+															<option value="20">Desertos</option>
+															<option value="21">Florestas</option>
+															<option value="22">Parques nacionais</option>
+															<option value="23">Jardins botânicos</option>
+															<option value="24">Eventos esportivos</option>
+															<option value="25">Corrida de Fórmula 1</option>
+															<option value="26">Regatas de vela</option>
+															<option value="27">Centros comerciais</option>
+															<option value="28">Feiras de artesanato</option>
+															<option value="29">Mercados de rua</option>
+															<option value="30">Lojas de fábrica</option>
+															<option value="31">Trens históricos</option>
+															<option value="32">Zoológicos</option>
+															<option value="33">Aquários</option>
+															<option value="34">Bibliotecas</option>
+															<option value="35">Antigas prisões</option>
+															<option value="36">Museus de história viva</option>
+															<option value="37">Oficinas de artesanato</option>
+															<option value="38">Shows e concertos</option>
+															<option value="39">Feiras e exposições</option>
+															<option value="40">Eventos religiosos</option>
+															<option value="41">Turismo em cavernas</option>
+														</select>
+														<label for="horaAbre">Horario Abertura</label>
+														<input type="text" name="horaAbre">
+														<label for="horaFecha">Horario Fecha</label>
+														<input type="text" name="horaFecha">
+														<label for="horaAlmocoIda">Almoço (Ida)</label>
+														<input type="text" name="horaAlmocoIda">
+														<label for="horaAlmocoFecha">Almoço (Volta)</label>
+														<input type="text" name="horaAlmocoFecha">
+													</div>
+													<fieldset class="fieldNewPonto">
+														<legend>Endereço</legend>
+														<label for="endRuaPonto">Rua:</label>
+														<input type="text" name="endRuaPonto">
+														<label for="endBairroPonto">Bairro:</label>
+														<input type="text" name="endBairroPonto">
+														<label for="endNumPonto">Número:</label>
+														<input type="text" name="endNumPonto">
+														<label for="endCidadePonto">Cidade:</label>
+														<input type="text" name="endCidadePonto">
+														<label for="endUfPonto">UF:</label>
+														<input type="text" name="endUfPonto">
+														<label for="endCepPonto">CEP:</label>
+														<input type="text" name="endCepPonto">
+														<label for="endReferenciaPonto">Referencia:</label>
+														<input type="text" name="endReferenciaPonto">
+														<label for="endGeoLatPonto">Latitude (opicional)</label>
+														<input type="text" name="endGeoLatPonto">
+														<label for="endGeoLongePonto">Longitude (opicional)</label>
+														<input type="text" name="endGeoLongePonto">
+													</fieldset>
+													<div class="formBloco2">
+														<label for="profilePicPonto">Foto perfil (opicional)</label>
+														<input type="file" name="profilePicPonto" id="profilePicPonto">
+														<input type="submit" class="btnCadastro btnCadastroNew btnCadastrarNewPonto" value="CADASTRAR">
+													</div>
+												</form> 
+											</div>
+											<div class="modal-newPonto-footer">
+												<h3>Traveling Monkey - Todos os direitos reservados -</h3>
+											</div>
+										</div>
+									</div>
+								</div>
+								<% PontosTuristicos.forEach(pontos => { %>
+									<div class="cardPontosCadastrados">
+										<div class="imgPontosList">
+											<img src="<%= pontos.profilePicPonto %>" alt="">
+										</div>
+										<div class="descPontosList">
+											<textarea rows="3" cols="10" class="editable" type="text" name="nomePonto" id="" value="<%= pontos.nomePonto %>" disabled><%= pontos.nomePonto %></textarea>
+											<select class="editable" name="modalidade" id="modalidadeTuristica" disabled>
+												<option value="1" <%= pontos.modalidade == 1 ? 'selected' : '' %>>Locais históricos</option>
+												<option value="2" <%= pontos.modalidade == 2 ? 'selected' : '' %>>Museus e galerias de arte</option>
+												<option value="3" <%= pontos.modalidade == 3 ? 'selected' : '' %>>Eventos culturais</option>
+												<option value="4" <%= pontos.modalidade == 4 ? 'selected' : '' %>>Arte pública</option>
+												<option value="5" <%= pontos.modalidade == 5 ? 'selected' : '' %>>Comunidades étnicas</option>
+												<option value="6" <%= pontos.modalidade == 6 ? 'selected' : '' %>>Turismo industrial</option>
+												<option value="7" <%= pontos.modalidade == 7 ? 'selected' : '' %>>Turismo criativo</option>
+												<option value="8" <%= pontos.modalidade == 8 ? 'selected' : '' %>>Edifícios e estruturas</option>
+												<option value="9" <%= pontos.modalidade == 9 ? 'selected' : '' %>>Castelos e fortes</option>
+												<option value="10" <%= pontos.modalidade == 10 ? 'selected' : '' %>>Templos antigos</option>
+												<option value="11" <%= pontos.modalidade == 11 ? 'selected' : '' %>>Pontes e arranha-céus</option>
+												<option value="12" <%= pontos.modalidade == 12 ? 'selected' : '' %>>Restaurantes e bares</option>
+												<option value="13" <%= pontos.modalidade == 13 ? 'selected' : '' %>>Feiras e mercados</option>
+												<option value="14" <%= pontos.modalidade == 14 ? 'selected' : '' %>>Eventos gastronômicos</option>
+												<option value="15" <%= pontos.modalidade == 15 ? 'selected' : '' %>>Parques temáticos</option>
+												<option value="16" <%= pontos.modalidade == 16 ? 'selected' : '' %>>Parques aquáticos</option>
+												<option value="17" <%= pontos.modalidade == 17 ? 'selected' : '' %>>Carnavais</option>
+												<option value="18" <%= pontos.modalidade == 18 ? 'selected' : '' %>>Praias</option>
+												<option value="19" <%= pontos.modalidade == 19 ? 'selected' : '' %>>Montanhas</option>
+												<option value="20" <%= pontos.modalidade == 20 ? 'selected' : '' %>>Desertos</option>
+												<option value="21" <%= pontos.modalidade == 21 ? 'selected' : '' %>>Florestas</option>
+												<option value="22" <%= pontos.modalidade == 22 ? 'selected' : '' %>>Parques nacionais</option>
+												<option value="23" <%= pontos.modalidade == 23 ? 'selected' : '' %>>Jardins botânicos</option>
+												<option value="24" <%= pontos.modalidade == 24 ? 'selected' : '' %>>Eventos esportivos</option>
+												<option value="25" <%= pontos.modalidade == 25 ? 'selected' : '' %>>Corrida de Fórmula 1</option>
+												<option value="26" <%= pontos.modalidade == 26 ? 'selected' : '' %>>Regatas de vela</option>
+												<option value="27" <%= pontos.modalidade == 27 ? 'selected' : '' %>>Centros comerciais</option>
+												<option value="28" <%= pontos.modalidade == 28 ? 'selected' : '' %>>Feiras de artesanato</option>
+												<option value="29" <%= pontos.modalidade == 29 ? 'selected' : '' %>>Mercados de rua</option>
+												<option value="30" <%= pontos.modalidade == 30 ? 'selected' : '' %>>Lojas de fábrica</option>
+												<option value="31" <%= pontos.modalidade == 31 ? 'selected' : '' %>>Trens históricos</option>
+												<option value="32" <%= pontos.modalidade == 32 ? 'selected' : '' %>>Zoológicos</option>
+												<option value="33" <%= pontos.modalidade == 33 ? 'selected' : '' %>>Aquários</option>
+												<option value="34" <%= pontos.modalidade == 34 ? 'selected' : '' %>>Bibliotecas</option>
+												<option value="35" <%= pontos.modalidade == 35 ? 'selected' : '' %>>Antigas prisões</option>
+												<option value="36" <%= pontos.modalidade == 36 ? 'selected' : '' %>>Museus de história viva</option>
+												<option value="37" <%= pontos.modalidade == 37 ? 'selected' : '' %>>Oficinas de artesanato</option>
+												<option value="38" <%= pontos.modalidade == 38 ? 'selected' : '' %>>Shows e concertos</option>
+												<option value="39" <%= pontos.modalidade == 39 ? 'selected' : '' %>>Feiras e exposições</option>
+												<option value="40" <%= pontos.modalidade == 40 ? 'selected' : '' %>>Eventos religiosos</option>
+												<option value="41" <%= pontos.modalidade == 41 ? 'selected' : '' %>>Turismo em cavernas</option>
+											</select>
+										</div>
+										<a class="verMais" href="javascript:;" onmousedown="toggleDiv('cardPontosCadastrados-<%= pontos.id %>');">Ver mais</a>
+									</div>
+									<form class="formcardVerMais" id="cardPontosCadastrados-<%= pontos.id %>" style="display:none" action="">
+										<div class="blocoVerMais">
+											<fieldset class="verMaisFieldSetAdicionais">
+												<legend>ADICIONAIS: <%= pontos.nomePonto %></legend>
+													<label for="valorEntrada">VALOR DA ENTRADA:</label>
+													<input class="editable" type="text" name="valorEntrada" value="<%= pontos.valorEntrada.toLocaleString('pt-br', {style: 'currency', currency: 'BRL'}) %>" disabled>
+													<label for="endRuaPonto">Rua:</label>
+													<input class="editable"type="text" name="endRuaPonto" value="<%= pontos.endRuaPonto %>" disabled>
+													<label for="endBairroPonto">Bairro:</label>
+													<input class="editable"type="text" name="endBairroPonto" value="<%= pontos.endBairroPonto %>" disabled>
+													<label for="endNumPonto">Número:</label>
+													<input class="editable"type="text" name="endNumPonto" value="<%= pontos.endNumPonto %>" disabled>
+													<label for="endCidadePonto">Cidade:</label>
+													<input class="editable"type="text" name="endCidadePonto" value="<%= pontos.endCidadePonto %>" disabled>
+													<label for="endUfPonto">UF:</label>
+													<input class="editable"type="text" name="endUfPonto" value="<%= pontos.endUfPonto %>" disabled>
+													<label for="endCepPonto">CEP:</label>
+													<input class="editable"type="text" name="endCepPonto" value="<%= pontos.endCepPonto %>" disabled>
+													<label for="endReferenciaPonto">Referencia:</label>
+													<input class="editable"type="text" name="endReferenciaPonto" value="<%= pontos.endReferenciaPonto %>" disabled>
+													<label for="endGeoLatPonto">Latitude (opicional)</label>
+													<input class="editable"type="text" name="endGeoLatPonto" value="<%= pontos.endGeoLatPonto %>" disabled>
+													<label for="endGeoLongePonto">Longitude (opicional)</label>
+													<input class="editable"type="text" name="endGeoLongePonto" value="<%= pontos.endGeoLongePonto %>" disabled>
+											</fieldset>
+											<div class="diasDeFuncionamento">
+												<% pontos.horarios.forEach(horario => { %>
+													<fieldset class="diasDeFuncionamentoField">
+														<legend><%= horario.diaDaSemana %>:</legend>
+														<label for="horaAbre">Situação</label>
+														<input class="editable"type="text" name="situacao" value="<%= horario.situacao %>" disabled>
+														<label for="horaAbre">Horario Abertura</label>
+														<input class="editable"type="text" name="horaAbre" value="<%= horario.horaAbre %>" disabled>
+														<label for="horaFecha">Horario Fecha</label>
+														<input class="editable"type="text" name="horaFecha" value="<%= horario.horaFecha %>" disabled>
+														<label for="horaAlmocoIda">Almoço (Ida)</label>
+														<input class="editable"type="text" name="horaAlmocoIda" value="<%= horario.horaAlmocoIda %>" disabled>
+														<label for="horaAlmocoVolta">Almoço (Fecha)</label>
+														<input class="editable"type="text" name="horaAlmocoVolta" value="<%= horario.horaAlmocoVolta %>" disabled>
+													</fieldset>
+												<% }) %>
+											</div>
+										</div>
+										<div class="btnAttPontos">
+											<input class="btnAtualizar editable" type="submit" value="ATUALIZAR" disabled>
+											<input class="btnDeletar editable" type="submit" value="EXCLUIR" disabled>
+										</div>
+									</form>
+								<% }) %>
+							<% } %>
+						</div>
+					</div>
+				</div>
+				<div class="cardSocialMedia">
+					<div class="cardProfileTitle">
+						<i id="editBtn-Social" class="fa fa-pen fa-xs edit"></i>
+						<h2>Conecte-se</h2>
+					</div>
+					<div class="social-media">
+						<span class="fa-stack fa-sm">
+							<i class="fas fa-circle fa-stack-2x"></i>
+							<i class="fab fa-facebook fa-stack-1x fa-inverse"></i>
+						</span>
+						<span class="fa-stack fa-sm">
+							<i class="fas fa-circle fa-stack-2x"></i>
+							<i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+						</span>
+						<span class="fa-stack fa-sm">
+							<i class="fas fa-circle fa-stack-2x"></i>
+							<i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+						</span>
+						<span class="fa-stack fa-sm">
+							<i class="fas fa-circle fa-stack-2x"></i>
+							<i class="fab fa-invision fa-stack-1x fa-inverse"></i>
+						</span>
+						<span class="fa-stack fa-sm">
+							<i class="fas fa-circle fa-stack-2x"></i>
+							<i class="fab fa-github fa-stack-1x fa-inverse"></i>
+						</span>
+						<span class="fa-stack fa-sm">
+							<i class="fas fa-circle fa-stack-2x"></i>
+							<i class="fab fa-whatsapp fa-stack-1x fa-inverse"></i>
+						</span>
+						<span class="fa-stack fa-sm">
+							<i class="fas fa-circle fa-stack-2x"></i>
+							<i class="fab fa-snapchat fa-stack-1x fa-inverse"></i>
+						</span>
+					</div>
+				</div>
+			</div>
+			<script>
+				//PROFILE USER - CONFIG/GALERIA/CONFIGURAÇÕES
+				function showPage(pageId, element) {
+					// Ocultar todas as páginas
+					document.querySelectorAll('.profileContainer, .galerieContainer, .settingsContainer').forEach(function(page) {
+					page.style.display = 'none';
+					});
+
+					// Remover a classe active de todos os links
+					document.querySelectorAll('.url a').forEach(function(link) {
+					link.classList.remove('active');
+					});
+
+					// Exibir a página selecionada
+					document.getElementById(pageId).style.display = pageId === 'galeriaPage' ? 'grid' : 'flex';
+
+					// Adicionar a classe active ao link clicado
+					element.classList.add('active');
+				}
+
+				// Exibir a página inicial (perfilPage) por padrão
+				document.getElementById('perfilPage').style.display = 'flex';
+
+				//MODAL FORM CADASTRO NOVO PONTO
+				var modalPonto = document.getElementById("myModalNewPonto");
+				var btnNewPonto = document.getElementById("btnNewPonto");
+				var spanNewPonto = document.getElementsByClassName("closeModalPonto")[0];
+
+				btnNewPonto.onclick = function() {
+					modalPonto.style.display = "block";
+				}
+
+				spanNewPonto.onclick = function() {
+					modalPonto.style.display = "none";
+				}
+
+				window.onclick = function(event) {
+					if (event.target == modalPonto) {
+						modalPonto.style.display = "none";
+					}
+				}
+
+				document.getElementById('editBtnPersonal').addEventListener('click', function() {
+					var profileDivs = document.querySelectorAll('.cardProfileTuristas');
+					profileDivs.forEach(function(div) {
+						var editableElements = div.querySelectorAll('.editable');
+						editableElements.forEach(function(element) {
+							// Habilita o input ou botão de submit
+							element.disabled = false;
+						});
+					});
+				});
+
+				document.getElementById('editBtnInfos').addEventListener('click', function() {
+					var profileDivs = document.querySelectorAll('.cardHistory');
+					profileDivs.forEach(function(div) {
+						var editableElements = div.querySelectorAll('.editable');
+						editableElements.forEach(function(element) {
+							// Habilita o input ou botão de submit
+							element.disabled = false;
+						});
+					});
+				});
+
+				document.getElementById('editBtnSettings').addEventListener('click', function() {
+					var profileDivs = document.querySelectorAll('.Sets');
+					profileDivs.forEach(function(div) {
+						var editableElements = div.querySelectorAll('.editable');
+						editableElements.forEach(function(element) {
+							// Habilita o input ou botão de submit
+							element.disabled = false;
+						});
+					});
+				});
+
+				//EXPANDIR DIV
+                function toggleDiv(divid){
+                    if(document.getElementById(divid).style.display == 'none'){
+                        document.getElementById(divid).style.display = 'flex';
+                    }else{
+                        document.getElementById(divid).style.display = 'none';
+                    }
+                }
+			</script>
+			<%- include ('partials/footer.ejs') %>

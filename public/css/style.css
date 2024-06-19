@@ -1,18 +1,14 @@
 :root {
-    --colorStandart: #2760E6;
-    --colorSecond: #6827E6;
-    --colorThird: #0C1E47;
-    --colorBtns: #E6AD27;
-    --colorBtnsHover: #E62774;
-    --colorBtnsActive: #27E631;
-    --colorBackGround: #495E91;
+    --colorStandart: #13B3F2;
+    --colorSecond: #F2C185;
+    --colorThird: #D96B0B;
+    --colorShadow: #169EF2;
     --fontTitles: "Bebas Neue", sans-serif;
     --fontBodyText: "Comfortaa", sans-serif;
 }
 
-/* ESTILIZAÇÃO DA BARRA DE SCROLL */
+/* ----- ESTILIZAÇÃO DA BARRA DE SCROLL ----- */
 
-/* Customiza a barra de rolagem inteira */
 ::-webkit-scrollbar {
     width: 12px;  /* Largura da barra de rolagem vertical */
     height: 12px; /* Altura da barra de rolagem horizontal */
@@ -20,7 +16,7 @@
 
 /* Customiza o "polegar" da barra de rolagem, que é a parte que se move */
 ::-webkit-scrollbar-thumb {
-    background-color: var(--colorBtns);  /* Cor do polegar */
+    background-color: var(--colorSecond);  /* Cor do polegar */
     border-radius: 1rem;      /* Bordas arredondadas */
 }
 
@@ -30,27 +26,24 @@
 }
 
 /* Customiza a faixa de rolagem quando está ativa (quando está sendo rolada) */
-::-webkit-scrollbar-track-piece {
-    background: var(--colorStandart);
-}
+::-webkit-scrollbar-track-piece { background: var(--colorStandart); }
 
 /* Customiza os botões de incremento/decremento da barra de rolagem (não visível na maioria dos navegadores) */
-::-webkit-scrollbar-button {
-    background-color: var(--colorBtns);
+::-webkit-scrollbar-button { 
+    background-color: var(--colorSecond);
     border-radius: 1rem;
 }
 
 /* Customiza a barra de rolagem quando está em modo "hover" (quando o mouse está sobre ela) */
-::-webkit-scrollbar-thumb:hover {
-    background: var(--colorBtnsHover); /* Cor do polegar em modo hover */
-}
+::-webkit-scrollbar-thumb:hover { background: var(--colorStandart); /* Cor do polegar em modo hover */ }
 
-/* ESTILIZAÇÃO DA BARRA DE SCROLL */
+/* ----- ESTILIZAÇÃO DA BARRA DE SCROLL ----- */
 
-/*ESTILIZAÇÃO DE SUBMIT BUTTON COM DISABLED-ENABLED*/
+/* ----- ESTILIZAÇÃO DE SUBMIT BUTTON COM DISABLED-ENABLED ----- */
 
 /* Estilo para o botão desativado */
-input[type="submit"].btnAtt.editable:disabled {
+input[type="submit"].btnAtt.editable:disabled, 
+input[type="submit"].editable.btnAtualizar:disabled {
     background-color: #d3d3d3; /* Cor de fundo para o estado desativado */
     color: #888; /* Cor do texto para o estado desativado */
     cursor: not-allowed; /* Cursor indicando que não está clicável */
@@ -58,41 +51,27 @@ input[type="submit"].btnAtt.editable:disabled {
 }
 
 /* Estilo para o botão ativado */
-input[type="submit"].btnAtt.editable:enabled {
-    background-color: var(--colorBtns); /* Cor de fundo para o estado ativado */
+input[type="submit"].btnAtt.editable:enabled,
+input[type="submit"].editable.btnAtualizar:enabled {
+    background-color: var(--colorSecond); /* Cor de fundo para o estado ativado */
     color: #000000; /* Cor do texto para o estado ativado */
     cursor: pointer; /* Cursor indicando que é clicável */
     transition: background-color 0.3s ease; /* Transição suave ao mudar de estado */
 }
 
 /* Estilo adicional ao passar o mouse sobre o botão ativado */
-input[type="submit"].btnAtt.editable:enabled:hover {
-    background-color: var(--colorBtnsHover); /* Cor de fundo ao passar o mouse */
+input[type="submit"].btnAtt.editable:enabled:hover,
+input[type="submit"].btnAtualizar.editable:enabled:hover {
+    background-color: var(--colorStandart); /* Cor de fundo ao passar o mouse */
     color: #ffffff; /* Cor do texto ao passar o mouse */
 }
 /* Estilo adicional click do mouse sobre o botão ativado */
-input[type="submit"].btnAtt.editable:enabled:active {
-    background-color: var(--colorBtnsActive); /* Cor de fundo ao passar o mouse */
+input[type="submit"].btnAtt.editable:enabled:active,
+input[type="submit"].editable.btnAtualizar:enabled:active {
+    background-color: var(--colorShadow); /* Cor de fundo ao passar o mouse */
 }
 
-/*ESTILIZAÇÃO DE SUBMIT BUTTON COM DISABLED-ENABLED*/
-
-
-
-
-body {
-    background-color: var(--colorBackGround);
-    margin: 0;
-    padding: 0;
-    width: 100vw;
-    height: 100vh;
-    font-family: var(--fontBodyText);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-content: space-between;
-}
+/* ----- ESTILIZAÇÃO DE SUBMIT BUTTON COM DISABLED-ENABLED ----- */
 
 .alertDanger {
     position: absolute;
@@ -100,7 +79,7 @@ body {
     padding: 1rem;
     margin-bottom: 0.6rem;
     text-align: center;
-    color: var(--colorBtnsHover);
+    color: var(--colorStandart);
     text-transform: uppercase;
     font-size: 1rem;
     font-weight: bold;
@@ -113,7 +92,7 @@ body {
     width: 50%;
     padding: 0.4rem;
     text-align: center;
-    color: var(--colorBtnsActive);
+    color: var(--colorShadow);
     font-size: 1rem;
     text-transform: uppercase;
     background: var(--colorThird);
@@ -121,26 +100,229 @@ body {
     font-weight: bold;
 }
 
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 11;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #f2c18596;
+}
+  
+.modal-content {
+    background-color: var(--colorStandart);
+    margin: 5% auto;
+    padding: 20px;
+    box-shadow: 4px 4px 0px 4px var(--colorShadow);
+    width: 50%;
+    height: 70%;
+    border-radius: 1rem;
+}
+
+.modal-content h2 {
+    color: #ffffff;
+    font-family: var(--fontTitles);
+    font-size: 3rem;
+    margin: 0;
+}
+
+.modal-content p {
+    margin: 0 0 0.3rem 0;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.modal-body {
+    position: relative;
+    width: 100%;
+    height: 80%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50% 50%;
+    background: var(--colorShadow);
+    border-radius: 1rem;
+}
+
+.modal-galerie {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    justify-content: space-evenly;
+}
+
+.modal-galerie img {
+    margin: 0 10px 0 10px;
+    width: 30%;
+    height: 100%;
+    border-radius: 2rem;
+}
+
+.reservasInfos {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 70% 30%;
+}
+
+.reservasInfos label {
+    color: #ffffff;
+    width: 40%;
+    height: 15%;
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-align: end;
+    align-content: center;
+}
+
+.reservasInfos span {
+    color: #000000;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 60%;
+    height: 15%;
+    text-align: justify;
+    align-content: center;
+}
+
+.infosPonto {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: flex-start;
+}
+
+.infosAddPontos {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 75% 25%;
+}
+
+.beneficios {
+    display: grid;
+    grid-template-rows: 20% 80%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.comodidades, .comodidadesLista {
+    width: 100%;
+    height: 100%;
+}
+
+.comodidades {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.comodidades i {
+    width: 15%;
+    height: 100%;
+    text-align: center;
+    align-content: center;
+    font-size: 2rem;
+    color: var(--colorSecond);
+}
+
+.comodidadesLista ul {
+    list-style: none;
+    margin: 10px 0 0 10px;
+    padding: 0;
+}
+
+#modal-stars {
+    color: var(--colorThird);
+    margin-bottom: 1rem;
+}
+
+.btnReservarPonto {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.btnReservarPonto a {
+    width: 50%;
+    height: 55%;
+    font-size: 1rem;
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+    background: var(--colorSecond);
+    text-align: center;
+    align-content: center;
+    border-radius: 1rem;
+    border: 2px solid #000000;
+}
+  
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+  
+.modal-background {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+body {
+    position: absolute;
+    background-color: var(--colorStandart);
+    margin: 0;
+    padding: 0;
+    width: 99vw;
+    height: 99vh;
+    font-family: var(--fontBodyText);
+}
+
 legend {
     font-family: var(--fontTitles);
     color: #ffffff;
     font-size: 1.5rem;
+    text-align: center;
 }
 
 .navTopMenu {
+    position: relative;
+    top: 0.2rem;
+    left: 0.2rem;
     width: 95%;
     height: 5rem;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
     display: grid;
-    grid-template:
-        "logo navbar" 100%
-        /30% 2fr
-    ;
+    grid-template: "logo navbar" 100% / 15% 2fr;
     font-weight: bold;
-    text-transform: uppercase;
-    text-decoration: none;
-    background: var(--colorSecond);
-    border-radius: 1rem;
-    z-index: 1;
+    background: var(--colorThird);
+    box-shadow: 4px 4px 6px 4px var(--colorSecond);
+    z-index: 9;
 }
 
 .topMenu {
@@ -151,7 +333,7 @@ legend {
     padding: 0;
     display: inline-flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
 }
@@ -167,16 +349,13 @@ legend {
 }
 
 .liHover:hover, .liHover a:hover,
-.searchDivHover:hover, .quickSearch a:hover {
-    background: var(--colorBtnsHover);
+.searchDivHover:hover {
+    background: var(--colorStandart);
     color: #000000;
     border-radius: 1rem;
 }
 
-.liHover:active, .liHover a:active,
-.quickSearch a:active {
-    background: var(--colorBtnsActive);
-}
+.liHover:active, .liHover a:active { background: var(--colorShadow); }
 
 .logo {
     grid-area: logo;
@@ -187,7 +366,7 @@ legend {
 
 .logo a {
     height: 100%;
-    width: 25%;
+    width: 50%;
     align-content: center;
     text-align: center;
 }
@@ -218,14 +397,11 @@ legend {
     align-items: center;
 }
 
-.currency { justify-content: center;}
+.currency { justify-content: center; }
 
-.language img, .currency img {
-    height: 40%;
-}
+.language img, .currency img { height: 40%; }
 
 .modalCurrency, .modalNewPonto {
-    display: none;
     position: fixed;
     z-index: 1;
     padding-top: 100px;
@@ -238,7 +414,8 @@ legend {
     background-color: rgba(0,0,0,0.4);
 }
 
-.modal-currency-content, .modal-newPonto-content {
+.modal-currency-content, .modal-newPonto-content,
+.modal-reservas-content {
     position: relative;
     background-color: var(--colorBackGround);
     margin: auto;
@@ -263,7 +440,7 @@ legend {
     to {top:0; opacity:1}
 }
 
-.close, .closeModalPonto {
+.close, .closeModalPonto, .closeModalReservas {
     color: white;
     float: right;
     font-size: 28px;
@@ -273,29 +450,30 @@ legend {
 .close:hover,
 .close:focus,
 .closeModalPonto:hover,
-.closeModalPonto:focus {
+.closeModalPonto:focus,
+.closeModalReservas:hover,
+.closeModalReservas:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
 }
 
-.modal-currency-header, .modal-newPonto-header {
+.modal-currency-header, .modal-newPonto-header,
+.modal-reservas-header {
     padding: 2px 16px;
-    background-color: var(--colorSecond);
+    background-color: var(--colorThird);
     color: white;
     border-radius: 1rem 1rem 0 0;
 }
 
-.modal-currency-body, .modal-newPonto-body {
+.modal-currency-body, .modal-newPonto-body,
+.modal-reservas-body {
     padding: 2px 16px;
     height: 10rem;
     display: grid;
-    grid-template:
-        "lang" 35%
-        "coin" 35%
-        "btnSelect" 30%
-        /1fr
-    ;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    background: var(--colorStandart);
 }
 
 .modal-newPonto-body {
@@ -303,7 +481,8 @@ legend {
     height: 40rem;
 }
 
-.modal-currency-footer, .modal-newPonto-footer {
+.modal-currency-footer, .modal-newPonto-footer,
+.modal-reservas-footer {
     padding: 2px 16px;
     background-color: var(--colorThird);
     color: white;
@@ -311,67 +490,44 @@ legend {
 }
 
 .lang, .coin {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
     align-items: center;
     justify-items: center;
 }
 
-.lang label, .coin label,
-.coin select, .lang select {
-    width: 100%;
-    height: 50%;
+.lang label, .coin label {
+    width: 90%;
+    height: 100%;
     font-size: 1.5rem;
     font-weight: bold;
     color: #ffffff;
+    align-content: center;
+    text-align: center;
 }
 
-.coin select, .lang select {
+.coin select, .lang select { 
     color: #000000;
-}
-
-.lang {
-    grid-area: lang;
-    display: grid;
-    grid-template:
-        "langLabel langSelect" 100%
-        /1fr 1fr
-    ;
+    width: 95%;
+    height: 75%;
 }
 
 .select {
-    grid-area: btnSelect;
     display: grid;
-    grid-template:
-        ". . btn" 100%
-        /1fr 1fr 1fr
-    ;
+    grid-template-columns: 30%;
+    justify-content: end;
     align-items: center;
-    justify-items: center;
 }
 .btnSelect {
-    grid-area: btn;
     width: 70%;
     font-size: 1rem;
     font-weight: bold;
     height: 70%;
-    background: var(--colorBtns);
+    background: var(--colorSecond);
     color: #000000;
     border-radius: 1rem;
 }
-
-.lang label { grid-area: langLabel;}
-.lang select { grid-area: langSelect;}
-
-.coin {
-    grid-area: coin;
-    display: grid;
-    grid-template:
-        "coinLabel coinSelect" 100%
-        /1fr 1fr
-    ;
-}
-
-.coin label { grid-area: coinLabel;}
-.coin select { grid-area: coinSelect;}
 
 .loginBtn {
     height: 100%;
@@ -388,7 +544,7 @@ legend {
 .buttonIn {
     width: 70%;
     height: 3rem;
-    background: var(--colorBtns);
+    background: var(--colorSecond);
     color: #ffffff;
     font-family: var(--fontBodyText);
     text-transform: uppercase;
@@ -402,7 +558,7 @@ legend {
 .buttonOut {
     width: 70%;
     height: 3rem;
-    background: var(--colorBtns);
+    background: var(--colorSecond);
     color: #ffffff;
     font-family: var(--fontBodyText);
     text-transform: uppercase;
@@ -429,6 +585,7 @@ legend {
     align-content: center;
     text-decoration: none;
     color: #000000;
+    border-radius: 3rem;
 }
 
 .buttonIn a {
@@ -444,39 +601,74 @@ legend {
 
 
 .loginBtn button:hover, #searchFormSubmit input:hover,
-.btnSelect:hover, .loginBtn a:hover, .btnAtt:hover {
-    background: var(--colorBtnsHover);
+.btnSelect:hover, .loginBtn a:hover,
+.btnAtt:hover, .verMais:hover,
+.form-btn > button:hover, .btnReservarPonto a:hover,
+.dados form > button:hover, .fotoSubmit:hover {
+    background: var(--colorStandart);
     color: #ffffff;
 }
 
 .loginBtn button:active, #searchFormSubmit input:active,
-.btnSelect:active, .loginBtn a:active, .btnAtt:active {
-    background: var(--colorBtnsActive);
-}
+.btnSelect:active, .loginBtn a:active,
+.form-btn > button:active, .btnAtt:active, 
+.verMais:active, .btnReservarPonto a:active,
+.dados form > button:active, .fotoSubmit:active { background: var(--colorShadow); }
 
 .liHome {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .liHome a {
-    width: 100%;
-    height: 100%;
-    align-content: center;
-    text-align: center;
     text-decoration: none;
     color: #ffffff;
-    border-radius: 1rem;
+    width: 30%;
+    height: 100%;
+    background-image: url(/imgs/icons/homeIcon.webp);
+    background-size: 5rem;
+    background-repeat: no-repeat;
+    background-position: right;
+    align-content: center;
+}
+
+.liHome a > img { width: 15%; }
+
+.liHome a > span {
+    color: var(--colorSecond);
+    font-weight: bolder;
+    -webkit-text-stroke: var(--colorSecond);
+    -webkit-text-stroke-width: 1px;
+    text-shadow: 4px 2px 5px black;
+}
+
+#homeIconImage {
+    width: 3%;
+    position: absolute;
+    right: 185px;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.liHome:hover #homeIconImage {
+    animation: bounce 0.7s infinite;
 }
 
 .headerBody {
-    width: 100vw;
-    height: 20vh;
+    position: relative;
+    width: 99%;
+    height: 30%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .searchSection {
@@ -573,9 +765,9 @@ legend {
 .dates {
     display: grid;
     grid-template:
-        "dateLabelIn dateLabelOut" 40%
-        "dateInputIn dateInputOut" 45%
-        / 1fr 1fr
+        "dateLabelIn" 40%
+        "dateInputIn" 45%
+        / 1fr
     ;
     border-right: dashed 1px;
     margin-right: 5px;
@@ -651,7 +843,7 @@ legend {
     grid-area: searchFormSubmit;
     height: 95%;
     width: 95%;
-    background: var(--colorBtns);
+    background: var(--colorSecond);
     color: #000000;
     font-weight: bold;
     border-radius: 1rem;
@@ -659,35 +851,36 @@ legend {
 }
 
 .indexBody {
+    position: relative;
     width: 100%;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    align-content: stretch;
+    align-content: flex-start;
 }
 
 .indexBody section {
     width: 80%;
-    height: 30%;
+    margin-bottom: 3rem;
     border-radius: 1rem;
     background: var(--colorStandart);
+    box-shadow: 4px 4px 0px 10px var(--colorShadow);
 }
 
 .quickSearch {
-    display: grid;
-    grid-template:
-        ". titleQSearch ." 40%
-        "searchCity searchLocal searchGuide" 60%
-        / 20% 20% 20%
-    ;
+    height: 35rem;
+    display: flex;
     justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
-.quickSearch h1 {
-    grid-area: titleQSearch;
+.quickSearch h1, .bestRewiews h1 {
+    width: 100%;
     font-family: var(--fontTitles);
     font-size: 3.5rem;
     color: #ffffff;
@@ -706,62 +899,111 @@ legend {
 
 .quickSearch img { width: 40%;}
 
-.citySearch { grid-area: searchCity;}
-
-.citySearch a {
-    display: grid;
-    grid-template:
-        "imgCitySearch" 80%
-        "spanCitySearch" 20%
-        / 1fr
-    ;
+.bestRewiews {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-items: center;
+    justify-content: center;
+    height: 30rem;
+    padding: 50px 0px;
+    overflow: hidden;
 }
 
-.citySearch img { grid-area: imgCitySearch;}
-.citySearch span { grid-area: spanCitySearch;}
-
-.localSearch { grid-area: searchLocal;}
-
-.localSearch a {
-    display: grid;
-    grid-template:
-        "imgLocalSearch" 80%
-        "spanLocalSearch" 20%
-        / 1fr
-    ;
-    align-items: center;
-    justify-items: center;
+.swiper-container {
+    position: relative;
+    width: 70%;
+    height: 100%;
+    left: 10px;
 }
 
-.localSearch img { grid-area: imgLocalSearch;}
-.localSearch span { grid-area: spanLocalSearch;}
-
-.guideSearch { grid-area: searchGuide;}
-
-.guideSearch a {
-    display: grid;
-    grid-template:
-        "imgGuideSearch" 80%
-        "spanGuideSearch" 20%
-        / 1fr
-    ;
-    align-items: center;
-    justify-items: center;
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+}
+  
+.card {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: var(--colorStandart);
+}
+  
+.card:before{
+    content: '';
+    display: block;
+    width: 100%;
+}
+  
+.background{
+    background-position: center;
+    background-size: cover;
+    border-radius: 24px;
+    bottom: 0;
+    filter: brightness(0.75) saturate(1.2) contrast(0.85);
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: 
+        filter 200ms linear,
+        transform 200ms linear;
+}
+  
+.card:hover .background{
+    transform: scale(1.05);
+    filter: none;
+}
+  
+.card-grid:hover > .card:not(:hover) .background{ filter: brightness(0.6) saturate(1) contrast(1.2)   blur(5px); }
+  
+.card-grid:hover > .card:not(:hover) .content{ filter: brightness(0.8) blur(2px); }
+  
+.content{
+    padding: 24px;
+    position: absolute;
+    top: 0;
+}
+  
+.category{
+    font-family: var(--fontTitles);
+    color: var(--colorSecond);
+    text-shadow: 4px 1px 5px black;
+    font-size: 1.4rem;
+    margin: 0;
+    text-transform: uppercase;
+}
+  
+.heading{
+    font-family: var(--fontTitles);
+    color: var(--colorSecond);
+    margin: 0;
+    font-size: 1.8rem;
+    text-shadow: 4px 1px 5px black;
 }
 
-.guideSearch img { grid-area: imgGuideSearch;}
-.guideSearch span { grid-area: spanGuideSearch;}
+.comodidade {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.comodidade i {
+    margin: 10px 10px 0 0;
+    font-size: 2rem;
+    color: var(--colorSecond);
+}
 
 .cidadesBody {
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     background: var(--colorStandart);
     border-radius: 1rem;
     flex-wrap: wrap;
     align-items: center;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
 }
 
 .cidadesBody h1 {
@@ -773,27 +1015,109 @@ legend {
     margin: 0 0 1rem 0;
 }
 
+.buscaPrincipal {
+    position: relative;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.cardProfileSettings h2 {
+    width: 100%;
+}
+
+.buscaPrincipal h1 {
+    color: #ffffff;
+    font-family: var(--fontTitles);
+    font-size: 3rem;
+    width: 100%;
+    height: 5%;
+    margin: 0;
+    text-align: center;
+}
+
+.buscaPrincipal img {
+    width: 40%
+}
+
 .cidadesTable {
     width: 90%;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0px 0px 0px 10px var(--colorShadow);
+}
+
+.cidadesTable select {
+    background: none;
+    color: #ffffff;
+    border: none;
+    font-size: 1.2rem;
     text-align: center;
 }
 
 .cidadesTable tr { height: 2.5rem;}
+.cidadesTable tr:nth-child(odd) { background: var(--colorShadow); }
+.cidadesTable tr:hover { background: var(--colorSecond); }
+
+#cidadesTableHead {
+    background: var(--colorThird);
+    color: #000000;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.pontosTable {
+    width: 90%;
+    text-align: center;
+    color: #ffffff;
+    box-shadow: 0px 0px 0px 10px var(--colorShadow);
+}
+
+.pontosTable img {
+    width: 10rem;
+    border-radius: 1rem;
+}
+
+.pontosTable tr { height: 3rem;}
+.pontosTable tr:nth-child(odd) { background: var(--colorShadow); }
+.pontosTable tr:hover { background: var(--colorSecond); }
+
+.horariosFunc {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+}
+
+.horariosFunc span {
+    width: 100%;
+    text-align: end;
+}
 
 footer {
-    width: 100%;
-    background: var(--colorThird);
+    position: relative;
     height: 7rem;
     color: #ffffff;
     font-size: 1.3rem;
     font-weight: bold;
     text-align: center;
     align-content: center;
-    z-index: 0;
+    left: 0.2rem;
+    width: 95%;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    background: var(--colorThird);
+    box-shadow: 4px 4px 6px 4px var(--colorSecond);
+    z-index: 9;
 }
 
 .demo_3 {
-    width: 80%;
+    width: 90%;
+    height: 68%;
     padding: 0em 4em 4em;
     text-align: center;
 }
@@ -810,7 +1134,6 @@ footer {
 	-ms-transition: color 0.3s, background-color 0.3s;
 	transition: color 0.3s, background-color 0.3s;
 }
-
 .related a:hover { background-color: rgba(0, 0, 0, 0.4);}
 
 .related a img {
@@ -820,11 +1143,7 @@ footer {
     -ms-transition: opacity 0.3s;
 	transition: opacity 0.3s;
 }
-
-.related a:hover img,
-.related a:active img {
-    opacity: 1;
-}
+.related a:hover img, .related a:active img { opacity: 1; }
 
 .related a h3 {
     margin: 0;
@@ -844,18 +1163,18 @@ footer {
     width: 300px;
     height: 460px;
     position: relative;
-    background: rgba(255,255,255,1);
     display: inline-block;
     margin: 0 10px;
     cursor: pointer;
     color: #2c3e50;
-    box-shadow: inset 0 0 0 3px var(--colorThird);
+    box-shadow: inset 0px -8px 13px 13px var(--colorShadow);
 	-webkit-transition: background 0.4s 0.5s;
 	-ms-transition: background 0.4s 0.5s;
 	transition: background 0.4s 0.5s;
 	margin-bottom:10px;
     overflow: hidden;
     transition: all 0.5s ease-in-out;
+    text-align: center;
 }
 
 .box.expanded { width: 55%;}
@@ -872,7 +1191,7 @@ footer {
     background: var(--colorBackGround);
     padding: 20px;
     box-sizing: border-box;
-    border: solid 1px var(--colorBtnsActive);
+    border: solid 1px var(--colorShadow);
 }
 .box.expanded .specific-form {
     display: grid;
@@ -971,16 +1290,16 @@ footer {
     width: 40%;
     height: 80%;
     border-radius: 0.5rem;
-    background: var(--colorBtns);
+    background: var(--colorSecond);
     font-weight: bold;
 }
 
 .btnCadastro:hover{
-    background: var(--colorBtnsHover);
+    background: var(--colorStandart);
     color: #ffffff;
 }
 .btnCadastro:active{
-    background: var(--colorBtnsActive);
+    background: var(--colorShadow);
     color: #ffffff;
 }
 
@@ -1119,14 +1438,14 @@ footer {
     top: 10px;
     right: 10px;
     background: none;
-    color: var(--colorBtns);
+    color: var(--colorSecond);
     border: none;
     font-size: 24px;
     cursor: pointer;
     z-index: 1;
 }
-.close-btn:hover { color: var(--colorBtnsHover);}
-.close-btn:active { color: var(--colorBtnsActive);}
+.close-btn:hover { color: var(--colorStandart);}
+.close-btn:active { color: var(--colorShadow);}
 
 .box:hover {
     background: rgba(255,255,255,0);
@@ -1135,14 +1454,7 @@ footer {
 	transition-delay: 0s;
 }
 
-.box img {
-    font-family: 'Dancing Script', cursive;
-    font-size: 180px;
-    line-height: 370px;
-    margin: 0;
-    font-weight: 400;
-    width: 100%;
-}
+.box img { width: 100%; }
 
 .box span {
     display: block;
@@ -1176,7 +1488,7 @@ footer {
 
 .box svg line {
     stroke-width: 3;
-    stroke: var(--colorBtnsHover);
+    stroke: var(--colorShadow);
     fill: none;
     -webkit-transition: all .8s ease-in-out;
 	-ms-transition: all .8s ease-in-out;
@@ -1189,15 +1501,9 @@ footer {
 	transition-delay: 0.1s;
 }
 
-.box svg line.top,
-.box svg line.bottom {
-	stroke-dasharray: 330 240; 
-}
+.box svg line.top, .box svg line.bottom { stroke-dasharray: 330 240; }
 
-.box svg line.left,
-.box svg line.right {
-	stroke-dasharray: 490 400;
-}
+.box svg line.left, .box svg line.right { stroke-dasharray: 490 400; }
 
 .box:hover svg line.top {
 	-webkit-transform: translateX(-600px);
@@ -1232,59 +1538,65 @@ footer {
 	transition: all .5s ease 0s;
 }
 
-.demo_3 .box:hover {
-    background: var(--colorThird);
-}
+.demo_3 .box:hover, .quickSearch .box:hover { background: var(--colorShadow); }
 
-.demo_3 .box h3,
-.demo_3 .box span {
+.demo_3 .box h3, .demo_3 .box span,
+.quickSearch .box h3, .quickSearch .box span {
 	-webkit-transition: all .5s ease 0s;
 	-ms-transition: all .5s ease 0s;
 	transition: all .5s ease 0s;
 }
-.demo_3 .box:hover h3, .demo_3 .box:hover span {
+.demo_3 .box:hover h3, .demo_3 .box:hover span,
+.quickSearch .box:hover h3, .quickSearch .box:hover span {
 	-webkit-transform: scale(.8);
 	-ms-transform: scale(.8);
 		transform:scale(.8);
 }
-.demo_3 .box svg line {
+.demo_3 .box svg line,
+.quickSearch .box svg line {
 	-webkit-transition: all .5s;
 	-ms-transition: all .5s;
 	transition: all .5s;
 }
 
-.demo_3 .box:hover svg line {
+.demo_3 .box:hover svg line,
+.quickSearch .box:hover svg line {
 	stroke-width: 10;
 	-webkit-transition-delay: 0s;
 	-ms-transition-delay: 0s;
 	transition-delay: 0s;
 }
 
-.demo_3 .box:hover svg line.top {
+.demo_3 .box:hover svg line.top,
+.quickSearch .box:hover svg line.top {
 	-webkit-transform: translateX(-300px);
 	-ms-transform: translateX(-300px);
 	transform: translateX(-300px);
 }
 
-.demo_3 .box:hover svg line.bottom {
+.demo_3 .box:hover svg line.bottom,
+.quickSearch .box:hover svg line.bottom {
 	-webkit-transform: translateX(300px);
 	-ms-transform: translateX(300px);
 	transform: translateX(300px);
 }
 
-.demo_3 .box:hover svg line.left {
+.demo_3 .box:hover svg line.left,
+.quickSearch .box:hover svg line.left {
 	-webkit-transform: translateY(460px);
 	-ms-transform: translateY(460px);
 	transform: translateY(460px);
 }
 
-.demo_3 .box:hover svg line.right {
+.demo_3 .box:hover svg line.right,
+.quickSearch .box:hover svg line.right {
 	-webkit-transform: translateY(-460px);
 	transform: translateY(-460px);
 }
 
 .login-form {
     width: 100%;
+    height: 80%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1305,7 +1617,7 @@ footer {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    background-color: var(--colorSecond);
+    background-color: var(--colorThird);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
@@ -1353,10 +1665,10 @@ footer {
     color: #000000;
 }
   
-.cardLoginForm input:focus { border-color: #3498db;}
+.cardLoginForm input:focus { border-color: #3498db; }
   
 .cardLoginForm button {
-    background-color: var(--colorBtns);
+    background-color: var(--colorSecond);
     color: #000000;
     font-weight: bolder;
     text-transform: uppercase;
@@ -1368,7 +1680,7 @@ footer {
 }
   
 .cardLoginForm button:hover {
-    background-color: var(--colorBtnsHover);
+    background-color: var(--colorStandart);
     color: #ffffff;
 }
 
@@ -1382,22 +1694,24 @@ footer {
     text-align: center;
 }
 
-.cardLoginForm a { color: var(--colorBtns);}
-.cardLoginForm a:hover { color: var(--colorBtnsHover);}
-.cardLoginForm a:active { color: var(--colorBtnsActive);}
+.cardLoginForm a { color: var(--colorSecond);}
+.cardLoginForm a:hover { color: var(--colorStandart);}
+.cardLoginForm a:active { color: var(--colorShadow);}
 
 .sidenav {
-    background-color: var(--colorSecond);
+    background-color: var(--colorThird);
     color: #ffffff;
     height: 100%;
-    left: 0;
+    left: 3px;
     overflow-x: hidden;
     position: absolute;
     width: 15%;
     display: flex;
-    z-index: 0;
+    z-index: 10;
     flex-direction: row;
     flex-wrap: wrap;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
 }
 
 .profile {
@@ -1424,9 +1738,9 @@ footer {
     padding-top: 10px;
 }
 
-.sidenav-url { width: 100%;}
+.sidenav-url { width: 100%; }
 
-.url, hr { text-align: center;}
+.url, hr { text-align: center; }
 
 .url hr {
     margin-left: 20%;
@@ -1434,7 +1748,7 @@ footer {
 }
 
 .url a {
-    color: #818181;
+    color: #ffffff;
     display: block;
     font-size: 20px;
     margin: 10px 0;
@@ -1443,27 +1757,158 @@ footer {
 }
 
 .url a:hover, .url .active {
-    background-color: #e8f5ff;
+    background-color: var(--colorStandart);
     border-radius: 28px;
-    color: #000;
+    color: #ffffff;
     margin-left: 14%;
     width: 65%;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.settingsContainer {
+    position: relative;
+    display: flex;
+    left: 15%;
+    width: 85%;
+    height: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
 }
 
 .profileContainer {
-    position: absolute;
-    width: 85%;
-    height: 79%;
-    top: 9%;
+    position: relative;
+    width: 80%;
+    height: 100%;
+    top: 3%;
     left: 15%;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: space-between;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
 
-.profileContainer h2 {
+.galerieContainer {
+    position: relative;
+    width: 80%;
+    height: 100%;
+    left: 15%;
+    grid-template-rows: 10% 50% 1fr;
+    justify-items: center;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.galerieContainer h1 { 
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    font-family: var(--fontTitles);
+    font-size: 4rem;
+    color: #ffffff;
+    align-content: center;
+}
+
+.galeria {
+    width: 99%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.galeria fieldset {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.pics {
+    width: 100%;
+    height: 10rem;
+    display: grid;
+    grid-template-columns: 40% 1fr;
+    margin: 0 10px 10px 0;
+}
+
+.pics:hover, .pics:nth-child(odd):hover { background: var(--colorSecond); }
+.pics:nth-child(odd) { background: var(--colorShadow); }
+
+.thumbnail {
+    width: 100%;
+    height: 100%;
+}
+
+.thumb {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 1rem;
+    text-align: center;
+    align-content: center;
+}
+
+.thumb img {
+    width: 30px;
+    height: 30px;
+}
+
+.dados {
+    display: grid;
+    grid-template-rows: 1fr 30%;
+    justify-items: center;
+    align-items: center;
+}
+
+.dados form {
+    width: 100%;
+    height: 100%;
+    align-content: center;
+    text-align: center;
+}
+
+.dados form > button {
+    height: 80%;
+    width: 30%;
+    background: var(--colorSecond);
+    color: #000000;
+    font-weight: bold;
+    border-radius: 1rem;
+    border: solid 2px #000000;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+}
+
+.dados > div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: stretch;
+}
+
+.dados div > span { width: 100%; }
+
+.fotoSubmit {
+    height: 2rem;
+    width: 35%;
+    background: var(--colorSecond);
+    color: #000000;
+    font-weight: bold;
+    border-radius: 1rem;
+    border: solid 2px #000000;
+    text-transform: uppercase;
+}
+
+.profileContainer h2, .settingsContainer h2 {
     color: #ffffff;
     font-family: var(--fontTitles);
     font-size: 1.5rem;
@@ -1473,7 +1918,7 @@ footer {
 .cardProfile {
     display: flex;
     width: 100%;
-    height: 85%;
+    height: 75%;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
@@ -1485,6 +1930,27 @@ footer {
     height: 95%;
     background: var(--colorStandart);
     border-radius: 1rem;
+    box-shadow: 0px 0px 0px 7px var(--colorShadow);
+}
+
+.cardProfileSettings {
+    position: relative;
+    left: 25px;
+    position: relative;
+    left: 25px;
+    width: 35%;
+    height: 20%;
+    display: grid;
+    grid-template-rows: 40% 60%;
+    align-items: center;
+    border-radius: 1rem;
+    background: var(--colorThird);
+    box-shadow: 0px 0px 0px 7px var(--colorShadow);
+}
+
+.Settings {
+    width: 100%;
+    text-align: center;
 }
 
 .cardProfileTitle {
@@ -1507,45 +1973,163 @@ footer {
     font-size: 1.5rem;
     color: #ffffff;
 }
-.cardProfileTitle i:hover {
-    color: var(--colorBtnsHover);
-}
-.cardProfileTitle i:active {
-    color: var(--colorBtnsActive);
-}
+.cardProfileTitle i:hover { color: var(--colorStandart); }
+.cardProfileTitle i:active { color: var(--colorShadow); }
 
-.cardProfileBody-Infos {
-    width: 50%;
-    height: 95%;
-    overflow: auto;
+.cardHistory {
+    width: 100%;
+    height: 90%;
     border-radius: 1rem;
-    background: var(--colorThird);
-}
-
-.cardProfileBody-Inputs {
-    width: 100%;
-    height: 95%;
-    overflow: auto;
-}
-
-.cardProfileTuristas, .cardProfileTuristas form {
-    width: 100%;
-    height: 95%;
-    overflow: auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    align-content: flex-start;
+    justify-content: center;
 }
 
-.submitEdit {
-    width: 100%;
+.newPonto {
+    width: 95%;
+    height: 10%;
+    align-content: center;
     text-align: center;
 }
 
-.btnAtt {
+.cardPontosCadastrados {
+    width: 95%;
+    height: 30%;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    background: var(--colorFourth);
+    display: grid;
+    grid-template: 
+        "imgDisplay imgDisplay bodyDisplay bodyDisplay bodyDisplay" 40%
+        "imgDisplay imgDisplay bodyDisplay bodyDisplay bodyDisplay" 40%
+        "imgDisplay imgDisplay . . verMais" 20%
+        / 10% 10% 1fr 1fr 1fr
+    ;
+}
+
+.imgPontosList {
+    grid-area: imgDisplay;
+    width: 100%;
+    height: 100%;
+    align-content: center;
+    text-align: center;
+}
+
+.imgPontosList img { width: 100%; }
+
+.descPontosList {
+    grid-area: bodyDisplay;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    align-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff
+}
+
+.descPontosList textarea {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    background: no-repeat;
+    border: none;
+    width: 95%;
+    height: 60%;
+    text-transform: uppercase;
+    text-align: center;
+    align-content: center;
+}
+
+.descPontosList select {
+    font-size: 1.3rem;
+    font-weight: bold;
+    background: no-repeat;
+    border: none;
+    width: 95%;
+    text-align: center;
+}
+
+.verMais {
+    grid-area: verMais;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    align-content: center;
+}
+
+.formcardVerMais {
+    height: auto;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.blocoVerMais {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.verMaisFieldSetAdicionais {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+}
+
+.verMaisFieldSetAdicionais label {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.verMaisFieldSetHora {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+}
+
+.diasDeFuncionamento {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.diasDeFuncionamentoField {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;    
+}
+
+.diasDeFuncionamentoField label {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.btnAttPontos {
+    width: 100%;
+    height: auto;
+    align-content: center;
+    text-align: center;
+}
+
+.btnAtualizar {
     width: 25%;
-    background-color: var(--colorBtns);
+    background-color: var(--colorSecond);
     color: #000000;
     font-weight: bolder;
     text-transform: uppercase;
@@ -1556,16 +2140,106 @@ footer {
     transition: background-color 0.3s ease-in-out;
 }
 
-.pontosCadastrados {
-    color: #ffffff;
+.btnDeletar {
+    width: 25%;
+    background-color: var(--colorShadow);
+    color: #000000;
+    font-weight: bolder;
+    text-transform: uppercase;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
 }
+
+.btnCadastroNew {
+    width: 25%;
+    height: 70%;
+    border-radius: 0.5rem;
+    background: var(--colorSecond);
+    font-weight: bold;
+}
+
+.cardProfileBody-Infos {
+    width: 50%;
+    height: 95%;
+    overflow: auto;
+    border-radius: 1rem;
+    background: var(--colorThird);
+    box-shadow: 0px 0px 0px 7px var(--colorShadow);
+}
+
+.cardProfileBody-Inputs {
+    width: 100%;
+    height: 95%;
+    overflow: auto;
+}
+
+.cardProfileTuristas {
+    width: 100%;
+    height: 100%;
+}
+
+.cardProfileTuristas form {
+    width: 100%;
+    height: 95%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.cardProfileTuristas form > fieldset {
+    width: 75%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: end;
+    justify-content: start;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.cardProfileTuristas form fieldset > label {
+    width: 100%;
+    height: 2rem;
+    text-align: end;
+    align-content: center;
+}
+
+.cardProfileTuristas form fieldset > input {
+    height: 2rem;
+    width: 95%;
+}
+
+.submitEdit {
+    width: 100%;
+    text-align: center;
+}
+
+.btnAtt {
+    width: 25%;
+    background-color: var(--colorSecond);
+    color: #000000;
+    font-weight: bolder;
+    text-transform: uppercase;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.pontosCadastrados { color: #ffffff; }
 
 .formNewPonto {
     display: flex;
     flex-direction: column;
     align-content: center;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .formNewPonto label {
@@ -1573,17 +2247,52 @@ footer {
     font-weight: bold;
     font-size: 1rem;
     text-transform: uppercase;
-    width: 50%;
+    width: 100%;
+    height: 100%;
 }
 
+.formBloco1 {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+    align-items: center;
+}
+
+.formBloco2 {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.formBloco2 label {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    width: 55%;
+    height: 50%;
+}
+
+.formBloco2 input { width: 55%; }
+
 .fieldNewPonto {
-    width: 100%;
+    width: 95%;
     height: 40%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+    align-items: center;
+    justify-items: start;
+    align-content: center;
 }
 
 .cardSocialMedia {
     width: 90%;
     height: 15%;
+    top: 5%;
     left: 5%;
     border-radius: 1rem;
     position: relative;
@@ -1599,3 +2308,164 @@ footer {
     justify-content: space-between;
     align-items: center;
 }
+
+
+/*PAGE RESERVAS*/
+
+.section {
+	position: relative;
+	height: 80%;
+}
+
+.section .section-center {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.booking-form {
+    position: relative;
+    max-width: 642px;
+    width: 100%;
+    margin: auto;
+    background: var(--colorThird);
+    border-radius: 1rem;
+    box-shadow: 4px 4px 6px 4px var(--colorSecond);
+}
+
+.booking-form>.booking-bg {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	bottom: 0px;
+	width: 250px;
+	background-size: cover;
+	background-position: center;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    box-shadow: -108px 0px 154px -41px rgba(0,0,0,0.8) inset;
+    -webkit-box-shadow: -108px 0px 154px -41px rgba(0,0,0,0.8) inset;
+    -moz-box-shadow: -108px 0px 154px -41px rgba(0,0,0,0.8) inset;
+}
+
+.booking-form>form {
+	margin-left: 250px;
+    padding: 30px;
+    border-left: 0px;
+}
+
+.booking-form .form-header { margin-bottom: 30px; }
+
+.booking-form .form-header h2 {
+    margin: 0;
+    margin-bottom: 0px;
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 3rem;
+    text-transform: uppercase;
+    font-family: var(--fontTitles);
+}
+
+.row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+.booking-form .form-group {
+	position: relative;
+    width: 100%;
+	margin-bottom: 20px;
+}
+
+.booking-form .form-control {
+	background-color: #ffffff;
+    width: 85%;
+	height: 40px;
+	padding: 0px 10px;
+	border-radius: 0px;
+	-webkit-transition: 0.2s;
+	transition: 0.2s;
+	color: #000000;
+	border: 0px;
+	font-size: 16px;
+	font-weight: 700;
+	-webkit-box-shadow: inset 0 1px 4px rgba(181, 193, 204, 0.3);
+	box-shadow: inset 0 1px 4px rgba(181, 193, 204, 0.3);
+}
+
+.booking-form .form-control::-webkit-input-placeholder { color: #dde3e8; }
+.booking-form .form-control:-ms-input-placeholder { color: #dde3e8; }
+.booking-form .form-control::placeholder { color: #dde3e8; }
+
+.booking-form .form-control:focus {
+	-webkit-box-shadow: inset 0 1px 4px rgba(181, 193, 204, 0.3);
+	box-shadow: inset 0 1px 4px rgba(181, 193, 204, 0.3);
+}
+
+.booking-form input[type="date"].form-control:invalid { color: #dde3e8; }
+
+.booking-form select.form-control {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.booking-form select.form-control+.select-arrow {
+	position: absolute;
+	right: 0px;
+	bottom: 4px;
+	width: 32px;
+	line-height: 32px;
+	height: 32px;
+	text-align: center;
+	pointer-events: none;
+}
+
+.booking-form select.form-control+.select-arrow:after {
+	content: '\279C';
+	display: block;
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+	color: #dddee9;
+	font-size: 14px;
+}
+
+.booking-form .form-label {
+    color: #ffffff;
+    font-weight: bold;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
+    text-transform: uppercase;
+    line-height: 24px;
+    height: 24px;
+    font-size: 1rem;
+    z-index: 1;
+}
+
+.booking-form .form-btn { margin-top: 10px; }
+
+.booking-form .submit-btn {
+	color: #000000;
+    background-color: var(--colorSecond);
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 13px 35px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 1rem;
+    width: 100%;
+}
+
+@media only screen and (max-width: 480px) {
+	.booking-form>.booking-bg {
+		display: none;
+	}
+	.booking-form>form {
+		margin-left: 0px;
+	}
+}
+/*PAGE RESERVAS*/

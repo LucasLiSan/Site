@@ -3,6 +3,11 @@ import connection from "../config/sequelize-config.js";
 
 const PontosTuristicos = connection.define('pontos', 
 {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
     nomePonto:{
         type: Sequelize.STRING,
         allowNull:false
@@ -58,5 +63,4 @@ const PontosTuristicos = connection.define('pontos',
 });
 
 PontosTuristicos.sync({force:false});
-
 export default PontosTuristicos;

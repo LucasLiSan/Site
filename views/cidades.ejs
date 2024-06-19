@@ -1,18 +1,23 @@
 <%- include ('partials/header.ejs') %>
-    <main class="cidadesBody">
+    <section class="cidadesBody">
         <h1>BUSCA RÁPIDA DE CIDADES</h1>
 
-        <table  class="cidadesTable">
+        <table class="cidadesTable sortTable">
             <thead>
-                <tr>
-                    <!--<th></th>-->
-                    <th>NOME: 
+                <tr id="cidadesTableHead">
+                    <th onclick="sortTable(0)">Cidade: 
                         <span class="material-symbols-outlined">swap_vert</span>
                     </th>
-                    <th>PONTO TURISTICO 
+                    <th onclick="sortTable(1)">Ponto turistico:
                         <span class="material-symbols-outlined">swap_vert</span>
                     </th>
-                    <th>SITUAÇÃO 
+                    <th onclick="sortTable(2)">Endereço:
+                        <span class="material-symbols-outlined">swap_vert</span>
+                    </th>
+                    <th onclick="sortTable(3)">Ponto de referência:
+                        <span class="material-symbols-outlined">swap_vert</span>
+                    </th>
+                    <th onclick="sortTable(4)">Situação:
                         <span class="material-symbols-outlined">swap_vert</span>
                     </th>
                 </tr>
@@ -20,19 +25,29 @@
             <tbody>
                 <% pontos.forEach(function(ponto){ %>
                     <tr>
-                        <!--<td><img src="<%= cidade.profilePic %>" alt=""></td>-->
-                        <td><%= ponto.nomePonto %></td>
                         <td><%= ponto.endCidadePonto %></td>
-                        <td><%= ponto.valorEntrada %></td>
+                        <td><%= ponto.nomePonto %></td>
+                        <td><%= ponto.endRuaPonto %> <%= ponto.endNumPonto %>, Bairro:<%= ponto.endBairroPonto %> </td>
+                        <td><%= ponto.endReferenciaPonto %></td>
+                        <td>
+                            <% if (ponto.horarios.length > 0) { %>
+                                <% const today = new Date().getDay(); %>
+                                <% const diasDaSemana = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira', 'Sábado']; %>
+                                <% const todayPt = diasDaSemana[today]; %>
+                                <% const horarioAtual = ponto.horarios.find(horario => horario.diaDaSemana.toUpperCase() === todayPt.toUpperCase()); %>
+                                <% if (horarioAtual) { %>
+                                    <%= horarioAtual.situacao %>
+                                <% } else { %>
+                                    Horário não especificado
+                                <% } %>
+                            <% } else { %>
+                                Não especificado
+                            <% } %>
+                        </td>
                     </tr>
                 <% }) %>
             </tbody>
-            <tfoot>
-                <tr>
-                    <th colspan="4"></th>
-                </tr>
-            </tfoot>
         </table>
-    </main>
+    </section>
 
 <%- include ('partials/footer.ejs') %>

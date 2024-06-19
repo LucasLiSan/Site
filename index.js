@@ -5,6 +5,8 @@ import express from "express";
 import connection from "./config/sequelize-config.js";
 import session from "express-session";
 import flash from "express-flash";
+import multer from "multer";
+import path from "path";
 
 //INICIANDO O EXPRESS
 const app = express();
@@ -21,14 +23,13 @@ connection.authenticate().then(() => {
 }).catch((error) => {
     console.log(error)
 });
-
 connection.query(`CREATE DATABASE IF NOT EXISTS travelingMonkey;`).then(() => {
     console.log("Banco de dados criado!")
 }).catch((error) => {
     console.log(error)
 });
 
-//DEFINIÇÕES
+//DEFINIÇÕES BÁSICAS
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:false}));
@@ -36,25 +37,32 @@ app.use(express.json());
 app.use(flash());
 app.use(session({
     secret: "Iwazaru",
-    cookie: {maxAge: 600000},
+    cookie: {maxAge: 86400000},
     saveUninitialized: false,
     resave: false
 }));
 
-//IMPORTANDO OS CONTROLLERS E DEFININDO O USO DAS ROTAS
-import buscaRapidaController from "./controllers/buscaRapidaController.js";
-import buscaController from "./controllers/buscaController.js";
-import guiasController from "./controllers/guiasController.js";
-import usersController from "./controllers/usersController.js";
-import reservasController from "./controllers/reservasController.js";
-import profileController from "./controllers/profileController.js";
+//DEFININDO LOCAL DE ARMAZENAMENTO
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) { cb(null, 'public/imgs/uploads'); },
+    filename: function (req, file, cb) { cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname)); }
+});
+const upload = multer({ storage: storage });
 
-app.use("/", buscaRapidaController);
+//IMPORTANDO OS CONTROLLERS E DEFININDO O USO DAS ROTAS
+import buscaController from "./controllers/buscaController.js";
+import buscaRapidaController from "./controllers/buscaRapidaController.js";
+import pontosController from "./controllers/pontosController.js"
+import profileController from "./controllers/profileController.js";
+import reservasController from "./controllers/reservasController.js";
+import usersController from "./controllers/usersController.js";
+
 app.use("/", buscaController);
-app.use("/", guiasController);
-app.use("/", usersController);
-app.use("/", reservasController);
+app.use("/", buscaRapidaController);
+app.use("/", pontosController);
 app.use("/", profileController);
+app.use("/", reservasController);
+app.use("/", usersController);
 
 //ROTA PRINCIPAL
 app.get("/home", function(req,res){

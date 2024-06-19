@@ -3,6 +3,11 @@ import connection from "../config/sequelize-config.js";
 
 const Cidades = connection.define('cidades', 
 {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
     nomeCidade:{
         type: Sequelize.STRING,
         allowNull:false
@@ -58,5 +63,4 @@ const Cidades = connection.define('cidades',
 });
 
 Cidades.sync({force:false});
-
 export default Cidades;

@@ -1,12 +1,24 @@
+/*
+CONTROLLER PARA TRATAMENTO DOS DADOS DOS USUARIOS CADASTRADOS (CIDADES, GUIAS E TURISTAS) - CADASTRAR NOVO, DELETAR, UPDATE
+Diferente do pontosController.js, esse é pra gerenciar os perfis de usuários criados no geral.
+*/
+
+/* \/---------- MODULES ----------\/ */
 import express from "express";
 import session from "express-session";
+import { Op } from "sequelize";
+import Auth from "../middleware/auth.js";
+/* /\---------- MODULES ----------/\ */
+/* \/---------- TABLES ----------\/ */
 import Turistas from "../models/turistas.js";
 import GuiasDeTurismo from "../models/guias.js";
 import Cidades from "../models/cidades.js";
 import PontosTuristicos from "../models/pontos.js";
-import CategoriasPontos from "../models/categoriaXponto.js";
-import Atracoes from "../models/atracoes.js";
-import Auth from "../middleware/auth.js";
+import HorarioFuncionamento from "../models/horarioFunc.js";
+import FotosPontos from "../models/fotosPontos.js";
+import Atracoes from "../models/cidadesXpontos.js";
+import "../models/associations.js";
+/* /\---------- TABLES ----------/\ */
 const router = express.Router();
 
 function formatDate(date) {
@@ -17,26 +29,70 @@ function formatDate(date) {
     return `${utcYear}-${utcMonth}-${utcDay}`;
 }
 
-
-router.get("/profileUser", (req, res) => {
+/* \/---------- ROTAS PARA TRATAMENTO DAS INFORMAÇÕES DOS USUÁRIOS ----------\/ */
+//CARREGAR INFORMAÇÕES
+router.get("/profileUser", Auth, async (req, res) => {
     const user = req.session.userCidade || req.session.userGuia || req.session.userTurista;
     const loggedOut = !user;
 
-    PontosTuristicos.findAll().then(pontosTuristicos => {
+    try {
+        const listagemPontos = await PontosTuristicos.findAll();
+
+        const atracoesCulturais = await Atracoes.findAll({
+            where: { idCidade: user.id },
+            include: {
+                model: PontosTuristicos,
+                as: 'atracoes',
+                include: {
+                    model: HorarioFuncionamento,
+                    as: 'horarios'
+                }
+            }
+        });
+
+        const fotosPontos = await FotosPontos.findAll({
+            where: { idFotografo: user.id },
+            include: {
+                model: PontosTuristicos,
+                as: 'pontoFotografado',
+            }
+        });
+
         res.render("profileUser", {
-            session: req.session, // Passando a sessão para a view
+            session: req.session,
             user: user,
             loggedOut: loggedOut,
             messages: req.flash(),
-            PontosTuristicos: pontosTuristicos
+            FotosPontos: fotosPontos,
+            ListaPontos : listagemPontos,
+            PontosTuristicos: atracoesCulturais.map(a => a.atracoes),
         });
-    }).catch(err => {
+    } catch (err) {
         console.error("Erro ao buscar Pontos Turisticos:", err);
         req.flash('danger', 'Erro ao carregar os pontos turísticos.');
-        res.redirect("/");
-    });
+        res.redirect("/profileUser");
+    }
 });
 
+//APAGAR FOTOS
+router.post("/profileUser/deleteFoto/:id", async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        await FotosPontos.destroy({
+            where: { id: id }
+        });
+        req.flash('success', 'Foto deletada com sucesso.');
+    } catch (err) {
+        console.error("Erro ao deletar Foto:", err);
+        req.flash('danger', 'Erro ao deletar a foto.');
+    }
+    res.redirect("/profileUser");
+});
+/* /\---------- ROTAS PARA TRATAMENTO DAS INFORMAÇÕES DOS USUÁRIOS ----------/\ */
+
+/* \/---------- ROTAS PARA TRATAMENTO DE INFORMAÇÕES BÁSICAS DOS PERFIS ----------\/ */
+//UPDATE BANCO DE DADOS
 router.post("/profileUser/update/:id", (req, res) => {
     const user = req.body.user;
     if (user === "cidade") {
@@ -149,4 +205,27 @@ router.post("/profileUser/update/:id", (req, res) => {
     }
 });
 
+router.post("/profileUser/deletePerfil/:id", async (req, res) => {
+    const id = req.params.id;
+    const user = req.body.user;
+    if (user === "cidade") {
+        Cidades.destroy({
+            where: { id: id }
+        });
+        req.flash('success', 'Perfil deletado com sucesso.');
+    } else if (user === "guia") {
+        GuiasDeTurismo.destroy({
+            where: { id: id }
+        });
+        req.flash('success', 'Perfil deletado com sucesso.');
+
+    } else if (user === "turista") {
+        Turistas.destroy({
+            where: { id: id }
+        });
+        req.flash('success', 'Perfil deletado com sucesso.');
+    }
+    res.redirect("/login");
+});
+/* /\---------- ROTAS PARA TRATAMENTO DE INFORMAÇÕES BÁSICAS DOS PERFIS ----------/\ */
 export default router;

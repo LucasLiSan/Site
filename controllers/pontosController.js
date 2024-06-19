@@ -1,10 +1,19 @@
+/*
+CONTROLLER PARA TRATAMENTO DOS DADOS DE PONTOS TURÍSTICOS - CADASTRAR NOVO, DELETAR, UPDATE
+Diferente do profileController.js esse é exclusivo pros usuários do tipo "cidade", porque os pontos turísticos são associados e gerenciados pelas cidades.
+*/
+
+/* \/---------- MODULES ----------\/ */
 import express from "express";
 import session from "express-session";
 import bcrypt from "bcrypt";
+import Auth from "../middleware/auth.js";
+/* /\---------- MODULES ----------/\ */
+/* \/---------- TABLES ----------\/ */
 import Cidades from "../models/cidades.js";
 import PontosTuristicos from "../models/pontos.js";
-import Atracoes from "../models/atracoes.js";
-import Auth from "../middleware/auth.js";
+import Atracoes from "../models/cidadesXpontos.js";
+/* /\---------- TABLES ----------/\ */
 const router = express.Router();
 
 router.post("/profileUser/ponto/new", (req, res) => {
@@ -49,5 +58,4 @@ router.post("/profileUser/ponto/update/:id", (req, res) => {
         res.redirect("/profileUser")
     })
 })
-
 export default router;

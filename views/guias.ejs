@@ -3,39 +3,40 @@
 <main class="cidadesBody">
     <h1>BUSCA RÁPIDA DE GUIAS</h1>
 
-    <table  class="cidadesTable">
+    <table  class="cidadesTable sortTable">
         <thead>
             <tr>
                 <!--<th></th>-->
-                <th>NOME: 
+                <th onclick="sortTable(0)">NOME: 
                     <span class="material-symbols-outlined">swap_vert</span>
                 </th>
-                <th>PONTO TURISTICO 
+                <th onclick="sortTable(1)">MOTORISTA: 
                     <span class="material-symbols-outlined">swap_vert</span>
                 </th>
-                <th>SITUAÇÃO 
+                <th onclick="sortTable(2)">IDIOMA
                     <span class="material-symbols-outlined">swap_vert</span>
                 </th>
-                <th></th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
-            <% pontos.forEach(function(guia){ %>
+            <% guias.forEach(function(guia){ %>
                 <tr>
-                    <!--<td><img src="<%= guia.profilePic %>" alt=""></td>-->
-                    <td><%= guia.nome %></td>
-                    <td><%= guia.pontoTuristico %></td>
-                    <td><%= guia.operacao %></td>
+                    <td><%= guia.nomeGuia %></td>
+                    <td><%= guia.motorGuia %></td>
                     <td>
-                        <div class="btnsActionscidades">
-                            <a class="editarcidade" href="/cidades/edit/<%= guia.id %>">EDITAR</a>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="btnsActionscidades">
-                            <a class="deletarcidade" href="/cidades/delete/<%= guia.id %>" onclick="return confirm('Tem certeza que deseja excluir o cadastro do cidade: <%= guia.nome %>?')">EXCLUIR</a>
-                        </div>
+                        <select name="" id="">
+                            <option <%= guia.idiomaGuia == 'DE' ? 'selected' : '' %>>Alemão</option>
+                            <option <%= guia.idiomaGuia == 'AR' ? 'selected' : '' %>>Árabe</option>
+                            <option <%= guia.idiomaGuia == 'BN' ? 'selected' : '' %>>Bengali</option>
+                            <option <%= guia.idiomaGuia == 'ZH'? 'selected' : '' %>>Chines (Mandarin)</option>
+                            <option <%= guia.idiomaGuia == 'ES' ? 'selected' : '' %>>Espanhol</option>
+                            <option <%= guia.idiomaGuia == 'FR' ? 'selected' : '' %>>Frances</option>
+                            <option <%= guia.idiomaGuia == 'HI' ? 'selected' : '' %>>Hindi</option>
+                            <option <%= guia.idiomaGuia == 'EN' ? 'selected' : '' %>>Inglês</option>
+                            <option <%= guia.idiomaGuia == 'JA' ? 'selected' : '' %>>Japones</option>
+                            <option <%= guia.idiomaGuia == 'PT-BR' ? 'selected' : '' %>>Portugues</option>
+                            <option <%= guia.idiomaGuia == 'RU' ? 'selected' : '' %>>Russo</option>
+                        </select>
                     </td>
                 </tr>
             <% }) %>

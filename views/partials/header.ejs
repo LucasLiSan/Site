@@ -9,6 +9,8 @@
             <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel+Decorative:wght@400;700;900&family=Eagle+Lake&family=Prata&display=swap" rel="stylesheet">
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+            <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+            <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
             <script src="/js/script.js"></script>
             <title>Traveling Monkey</title>
         </head>
@@ -22,7 +24,7 @@
                         <h2>Te guiamos aos guias</h2>
                     </div>
                     <div class="searchSectionOptions">
-                        <form class="searchForm" action="" method="GET">
+                        <form class="searchForm" action="/busca" method="GET">
                             <div class="destiny searchDivHover">
                                 <img src="/imgs/icons/searchIcon.webp" alt="Lupa">
                                 <label for="destinyList">Destino:</label>
@@ -36,8 +38,6 @@
                             <div class="dates searchDivHover">
                                 <label id="dateLabelIn" for="dateIn">Ida:</label>
                                 <input type="date" name="dateIn" id="dateIn">
-                                <label id="dateLabelOut" for="dateOut">Volta:</label>
-                                <input type="date" name="dateOut" id="dateOut">
                             </div>
                             <div class="people searchDivHover">
                                 <label id="peopleLabel" for="turists">Turistas:</label>

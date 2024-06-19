@@ -3,6 +3,11 @@ import connection from "../config/sequelize-config.js";
 
 const GuiasDeTurismo = connection.define('guias', 
 {
+    id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+    },
     nomeGuia:{
         type: Sequelize.STRING,
         allowNull:false
